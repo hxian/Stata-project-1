@@ -1,0 +1,1976 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/haotianxian/Documents/511B/project/new/pm511bproject_text_XIAN_HAOTIAN.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 1 Dec 2021, 22:10:55
+{txt}
+{com}. *1 Used R, see RMD file
+. *2
+. * categorical variables
+. use "/Users/haotianxian/Documents/511B/project/new/project_fall2021_estimation.dta"
+{txt}
+{com}. keep if (val == 0)
+{txt}(675 observations deleted)
+
+{com}. tab died male,row chi2
+{txt}
+{c TLC}{hline 16}{c TRC}
+{c |} Key{col 18}{c |}
+{c LT}{hline 16}{c RT}
+{c |}{space 3}{it:frequency}{col 18}{c |}
+{c |}{space 1}{it:row percentage}{col 18}{c |}
+{c BLC}{hline 16}{c BRC}
+
+In-Hospita {c |}         male
+   l Death {c |}         0          1 {c |}     Total
+{hline 11}{c +}{hline 22}{c +}{hline 10}
+         0 {c |}{res}       617      1,998 {txt}{c |}{res}     2,615 
+           {txt}{c |}{res}     23.59      76.41 {txt}{c |}{res}    100.00 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+         1 {c |}{res}        37        137 {txt}{c |}{res}       174 
+           {txt}{c |}{res}     21.26      78.74 {txt}{c |}{res}    100.00 
+{txt}{hline 11}{c +}{hline 22}{c +}{hline 10}
+     Total {c |}{res}       654      2,135 {txt}{c |}{res}     2,789 
+           {txt}{c |}{res}     23.45      76.55 {txt}{c |}{res}    100.00 
+
+{txt}          Pearson chi2({res}1{txt}) = {res}  0.4935  {txt} Pr = {res}0.482
+{txt}
+{com}. tab died race,row chi2
+{txt}
+{c TLC}{hline 16}{c TRC}
+{c |} Key{col 18}{c |}
+{c LT}{hline 16}{c RT}
+{c |}{space 3}{it:frequency}{col 18}{c |}
+{c |}{space 1}{it:row percentage}{col 18}{c |}
+{c BLC}{hline 16}{c BRC}
+
+In-Hospita {c |}                    Race
+   l Death {c |}         1          2          3          4 {c |}     Total
+{hline 11}{c +}{hline 44}{c +}{hline 10}
+         0 {c |}{res}       165        482        918      1,050 {txt}{c |}{res}     2,615 
+           {txt}{c |}{res}      6.31      18.43      35.11      40.15 {txt}{c |}{res}    100.00 
+{txt}{hline 11}{c +}{hline 44}{c +}{hline 10}
+         1 {c |}{res}        20         31         65         58 {txt}{c |}{res}       174 
+           {txt}{c |}{res}     11.49      17.82      37.36      33.33 {txt}{c |}{res}    100.00 
+{txt}{hline 11}{c +}{hline 44}{c +}{hline 10}
+     Total {c |}{res}       185        513        983      1,108 {txt}{c |}{res}     2,789 
+           {txt}{c |}{res}      6.63      18.39      35.25      39.73 {txt}{c |}{res}    100.00 
+
+{txt}          Pearson chi2({res}3{txt}) = {res}  8.7890  {txt} Pr = {res}0.032
+{txt}
+{com}. 
+. * continuous variables
+. graph box age, by(died) 
+{res}{txt}
+{com}. lowess died age, logit
+{res}{txt}
+{com}. 
+. graph box sbp, by(died) 
+{res}{txt}
+{com}. lowess died sbp, logit
+{res}{txt}
+{com}. 
+. graph box rr, by(died) 
+{res}{txt}
+{com}. lowess died rr, logit
+{res}{txt}
+{com}. 
+. graph box gcs, by(died) 
+{res}{txt}
+{com}. lowess died gcs, logit
+{res}{txt}
+{com}. 
+. * univariate logistic regression
+. net install asdoc, from(http://fintechprofessor.com) replace
+checking {hilite:asdoc} consistency and verifying not already installed...
+all files already exist and are up to date.
+{txt}
+{com}. asdoc logit died age
+{txt}(File Myfile.doc already exists, option {bf:append} was assumed)
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-632.17898}  
+Iteration 2:{space 3}log likelihood = {res:-630.42436}  
+Iteration 3:{space 3}log likelihood = {res:-630.41939}  
+Iteration 4:{space 3}log likelihood = {res:-630.41939}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:1})}{col 70} = {res}{ralign 6:41.56}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-630.41939}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0319}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0263506{col 26}{space 2} .0040063{col 37}{space 1}    6.58{col 46}{space 3}0.000{col 54}{space 4} .0184983{col 67}{space 3} .0342029
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-3.910543{col 26}{space 2} .2139054{col 37}{space 1}  -18.28{col 46}{space 3}0.000{col 54}{space 4} -4.32979{col 67}{space 3}-3.491296
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}Click to Open File:  {browse "Myfile.doc"}
+{txt}
+{com}. asdoc logit died male, rowappend
+{txt}(File Myfile.doc already exists, option {bf:append} was assumed)
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-650.94675}  
+Iteration 2:{space 3}log likelihood = {res:-650.94637}  
+Iteration 3:{space 3}log likelihood = {res:-650.94637}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:1})}{col 70} = {res}{ralign 6:0.50}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.4777}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-650.94637}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0004}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}male {c |}{col 14}{res}{space 2} .1340301{col 26}{space 2} .1909124{col 37}{space 1}    0.70{col 46}{space 3}0.483{col 54}{space 4}-.2401513{col 67}{space 3} .5082115
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-2.813951{col 26}{space 2} .1692565{col 37}{space 1}  -16.63{col 46}{space 3}0.000{col 54}{space 4}-3.145688{col 67}{space 3}-2.482214
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}Click to Open File:  {browse "Myfile.doc"}
+{txt}
+{com}. asdoc logit died i.race, rowappend
+{txt}(File Myfile.doc already exists, option {bf:append} was assumed)
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-647.62771}  
+Iteration 2:{space 3}log likelihood = {res:-647.31339}  
+Iteration 3:{space 3}log likelihood = {res:-647.31255}  
+Iteration 4:{space 3}log likelihood = {res:-647.31255}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:3})}{col 70} = {res}{ralign 6:7.77}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0510}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-647.31255}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0060}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 8}race {c |}
+{space 10}2  {c |}{col 14}{res}{space 2}-.6337437{col 26}{space 2} .3006549{col 37}{space 1}   -2.11{col 46}{space 3}0.035{col 54}{space 4}-1.223016{col 67}{space 3} -.044471
+{txt}{space 10}3  {c |}{col 14}{res}{space 2}-.5375969{col 26}{space 2} .2693224{col 37}{space 1}   -2.00{col 46}{space 3}0.046{col 54}{space 4}-1.065459{col 67}{space 3}-.0097347
+{txt}{space 10}4  {c |}{col 14}{res}{space 2}-.7858892{col 26}{space 2} .2724965{col 37}{space 1}   -2.88{col 46}{space 3}0.004{col 54}{space 4}-1.319973{col 67}{space 3}-.2518058
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-2.110213{col 26}{space 2} .2367712{col 37}{space 1}   -8.91{col 46}{space 3}0.000{col 54}{space 4}-2.574276{col 67}{space 3} -1.64615
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}Click to Open File:  {browse "Myfile.doc"}
+{txt}
+{com}. asdoc logit died sbp, rowappend
+{txt}(File Myfile.doc already exists, option {bf:append} was assumed)
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res: -646.7892}  
+Iteration 2:{space 3}log likelihood = {res:-646.74238}  
+Iteration 3:{space 3}log likelihood = {res:-646.74238}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:1})}{col 70} = {res}{ralign 6:8.91}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0028}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-646.74238}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0068}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}sbp {c |}{col 14}{res}{space 2}-.0087513{col 26}{space 2} .0029246{col 37}{space 1}   -2.99{col 46}{space 3}0.003{col 54}{space 4}-.0144834{col 67}{space 3}-.0030192
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-1.564667{col 26}{space 2} .3829596{col 37}{space 1}   -4.09{col 46}{space 3}0.000{col 54}{space 4}-2.315254{col 67}{space 3}-.8140802
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}Click to Open File:  {browse "Myfile.doc"}
+{txt}
+{com}. asdoc logit died rr, rowappend
+{txt}(File Myfile.doc already exists, option {bf:append} was assumed)
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-649.45223}  
+Iteration 2:{space 3}log likelihood = {res:-649.20974}  
+Iteration 3:{space 3}log likelihood = {res:-649.20915}  
+Iteration 4:{space 3}log likelihood = {res:-649.20915}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:1})}{col 70} = {res}{ralign 6:3.98}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0461}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-649.20915}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.0031}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}rr {c |}{col 14}{res}{space 2} .0199575{col 26}{space 2} .0092328{col 37}{space 1}    2.16{col 46}{space 3}0.031{col 54}{space 4} .0018615{col 67}{space 3} .0380535
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-3.122662{col 26}{space 2} .2104497{col 37}{space 1}  -14.84{col 46}{space 3}0.000{col 54}{space 4}-3.535136{col 67}{space 3}-2.710188
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}Click to Open File:  {browse "Myfile.doc"}
+{txt}
+{com}. asdoc logit died gcs, rowappend
+{txt}(File Myfile.doc already exists, option {bf:append} was assumed)
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-530.90127}  
+Iteration 2:{space 3}log likelihood = {res:-515.07011}  
+Iteration 3:{space 3}log likelihood = {res:-514.93244}  
+Iteration 4:{space 3}log likelihood = {res:-514.93242}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:1})}{col 70} = {res}{ralign 6:272.53}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-514.93242}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2093}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}gcs {c |}{col 14}{res}{space 2}-.2839032{col 26}{space 2} .0166799{col 37}{space 1}  -17.02{col 46}{space 3}0.000{col 54}{space 4}-.3165953{col 67}{space 3}-.2512111
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .7451491{col 26}{space 2} .1931197{col 37}{space 1}    3.86{col 46}{space 3}0.000{col 54}{space 4} .3666415{col 67}{space 3} 1.123657
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}Click to Open File:  {browse "Myfile.doc"}
+{txt}
+{com}. 
+. * preliminary model, p<0.25 for each variable
+. asdoc logit died age i.race sbp rr gcs, rowappend
+{txt}(File Myfile.doc already exists, option {bf:append} was assumed)
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-508.29961}  
+Iteration 2:{space 3}log likelihood = {res:-478.84223}  
+Iteration 3:{space 3}log likelihood = {res:-478.28425}  
+Iteration 4:{space 3}log likelihood = {res:-478.28407}  
+Iteration 5:{space 3}log likelihood = {res:-478.28407}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:7})}{col 70} = {res}{ralign 6:345.83}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-478.28407}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2655}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0368362{col 26}{space 2}  .004851{col 37}{space 1}    7.59{col 46}{space 3}0.000{col 54}{space 4} .0273283{col 67}{space 3}  .046344
+{txt}{space 12} {c |}
+{space 8}race {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .1969537{col 26}{space 2} .3611624{col 37}{space 1}    0.55{col 46}{space 3}0.586{col 54}{space 4}-.5109115{col 67}{space 3} .9048189
+{txt}{space 10}3  {c |}{col 14}{res}{space 2}-.1071123{col 26}{space 2} .3203234{col 37}{space 1}   -0.33{col 46}{space 3}0.738{col 54}{space 4}-.7349346{col 67}{space 3}   .52071
+{txt}{space 10}4  {c |}{col 14}{res}{space 2}-.2339511{col 26}{space 2} .3247666{col 37}{space 1}   -0.72{col 46}{space 3}0.471{col 54}{space 4}-.8704819{col 67}{space 3} .4025797
+{txt}{space 12} {c |}
+{space 9}sbp {c |}{col 14}{res}{space 2}-.0085564{col 26}{space 2} .0027643{col 37}{space 1}   -3.10{col 46}{space 3}0.002{col 54}{space 4}-.0139744{col 67}{space 3}-.0031384
+{txt}{space 10}rr {c |}{col 14}{res}{space 2} .0349444{col 26}{space 2} .0094943{col 37}{space 1}    3.68{col 46}{space 3}0.000{col 54}{space 4} .0163359{col 67}{space 3} .0535529
+{txt}{space 9}gcs {c |}{col 14}{res}{space 2}-.3052251{col 26}{space 2}  .018401{col 37}{space 1}  -16.59{col 46}{space 3}0.000{col 54}{space 4}-.3412905{col 67}{space 3}-.2691598
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.2222226{col 26}{space 2} .5494113{col 37}{space 1}   -0.40{col 46}{space 3}0.686{col 54}{space 4}-1.299049{col 67}{space 3} .8546037
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}Click to Open File:  {browse "Myfile.doc"}
+{txt}
+{com}. 
+. * likelihood ratio test, model without race
+. asdoc logit died age sbp rr gcs, rowappend
+{txt}(File Myfile.doc already exists, option {bf:append} was assumed)
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-509.01108}  
+Iteration 2:{space 3}log likelihood = {res:-480.22576}  
+Iteration 3:{space 3}log likelihood = {res:-479.68159}  
+Iteration 4:{space 3}log likelihood = {res:-479.68145}  
+Iteration 5:{space 3}log likelihood = {res:-479.68145}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:4})}{col 70} = {res}{ralign 6:343.03}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-479.68145}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2634}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0363338{col 26}{space 2} .0047208{col 37}{space 1}    7.70{col 46}{space 3}0.000{col 54}{space 4} .0270812{col 67}{space 3} .0455863
+{txt}{space 9}sbp {c |}{col 14}{res}{space 2}-.0086751{col 26}{space 2} .0027625{col 37}{space 1}   -3.14{col 46}{space 3}0.002{col 54}{space 4}-.0140895{col 67}{space 3}-.0032607
+{txt}{space 10}rr {c |}{col 14}{res}{space 2} .0344729{col 26}{space 2} .0095365{col 37}{space 1}    3.61{col 46}{space 3}0.000{col 54}{space 4} .0157817{col 67}{space 3} .0531641
+{txt}{space 9}gcs {c |}{col 14}{res}{space 2}-.3033443{col 26}{space 2} .0181376{col 37}{space 1}  -16.72{col 46}{space 3}0.000{col 54}{space 4}-.3388933{col 67}{space 3}-.2677953
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.2840001{col 26}{space 2} .4635068{col 37}{space 1}   -0.61{col 46}{space 3}0.540{col 54}{space 4}-1.192457{col 67}{space 3} .6244566
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}Click to Open File:  {browse "Myfile.doc"}
+{txt}
+{com}. est store base
+{txt}
+{com}. asdoc logit died age i.race sbp rr gcs, rowappend
+{txt}(File Myfile.doc already exists, option {bf:append} was assumed)
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-508.29961}  
+Iteration 2:{space 3}log likelihood = {res:-478.84223}  
+Iteration 3:{space 3}log likelihood = {res:-478.28425}  
+Iteration 4:{space 3}log likelihood = {res:-478.28407}  
+Iteration 5:{space 3}log likelihood = {res:-478.28407}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:7})}{col 70} = {res}{ralign 6:345.83}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-478.28407}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2655}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0368362{col 26}{space 2}  .004851{col 37}{space 1}    7.59{col 46}{space 3}0.000{col 54}{space 4} .0273283{col 67}{space 3}  .046344
+{txt}{space 12} {c |}
+{space 8}race {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .1969537{col 26}{space 2} .3611624{col 37}{space 1}    0.55{col 46}{space 3}0.586{col 54}{space 4}-.5109115{col 67}{space 3} .9048189
+{txt}{space 10}3  {c |}{col 14}{res}{space 2}-.1071123{col 26}{space 2} .3203234{col 37}{space 1}   -0.33{col 46}{space 3}0.738{col 54}{space 4}-.7349346{col 67}{space 3}   .52071
+{txt}{space 10}4  {c |}{col 14}{res}{space 2}-.2339511{col 26}{space 2} .3247666{col 37}{space 1}   -0.72{col 46}{space 3}0.471{col 54}{space 4}-.8704819{col 67}{space 3} .4025797
+{txt}{space 12} {c |}
+{space 9}sbp {c |}{col 14}{res}{space 2}-.0085564{col 26}{space 2} .0027643{col 37}{space 1}   -3.10{col 46}{space 3}0.002{col 54}{space 4}-.0139744{col 67}{space 3}-.0031384
+{txt}{space 10}rr {c |}{col 14}{res}{space 2} .0349444{col 26}{space 2} .0094943{col 37}{space 1}    3.68{col 46}{space 3}0.000{col 54}{space 4} .0163359{col 67}{space 3} .0535529
+{txt}{space 9}gcs {c |}{col 14}{res}{space 2}-.3052251{col 26}{space 2}  .018401{col 37}{space 1}  -16.59{col 46}{space 3}0.000{col 54}{space 4}-.3412905{col 67}{space 3}-.2691598
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.2222226{col 26}{space 2} .5494113{col 37}{space 1}   -0.40{col 46}{space 3}0.686{col 54}{space 4}-1.299049{col 67}{space 3} .8546037
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}Click to Open File:  {browse "Myfile.doc"}
+{txt}
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:3})} = {res}{ralign 6:2.79}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.4244}
+{txt}
+{com}. 
+. * LRT not significant, drop race
+. * now add back male, which was removed based on non-sig. uni-var regression
+. asdoc logit died age male sbp rr gcs, rowappend
+{txt}(File Myfile.doc already exists, option {bf:append} was assumed)
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-507.53413}  
+Iteration 2:{space 3}log likelihood = {res:-477.63276}  
+Iteration 3:{space 3}log likelihood = {res:-477.07802}  
+Iteration 4:{space 3}log likelihood = {res:-477.07785}  
+Iteration 5:{space 3}log likelihood = {res:-477.07785}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:5})}{col 70} = {res}{ralign 6:348.24}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-477.07785}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2674}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0387684{col 26}{space 2} .0048886{col 37}{space 1}    7.93{col 46}{space 3}0.000{col 54}{space 4} .0291869{col 67}{space 3} .0483498
+{txt}{space 8}male {c |}{col 14}{res}{space 2} .4918559{col 26}{space 2} .2217144{col 37}{space 1}    2.22{col 46}{space 3}0.027{col 54}{space 4} .0573036{col 67}{space 3} .9264082
+{txt}{space 9}sbp {c |}{col 14}{res}{space 2}-.0089597{col 26}{space 2}  .002764{col 37}{space 1}   -3.24{col 46}{space 3}0.001{col 54}{space 4}-.0143771{col 67}{space 3}-.0035423
+{txt}{space 10}rr {c |}{col 14}{res}{space 2} .0345319{col 26}{space 2} .0095038{col 37}{space 1}    3.63{col 46}{space 3}0.000{col 54}{space 4} .0159048{col 67}{space 3}  .053159
+{txt}{space 9}gcs {c |}{col 14}{res}{space 2}-.3041864{col 26}{space 2} .0182126{col 37}{space 1}  -16.70{col 46}{space 3}0.000{col 54}{space 4}-.3398825{col 67}{space 3}-.2684904
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.7326671{col 26}{space 2} .5071579{col 37}{space 1}   -1.44{col 46}{space 3}0.149{col 54}{space 4}-1.726678{col 67}{space 3} .2613441
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}Click to Open File:  {browse "Myfile.doc"}
+{txt}
+{com}. * male is now significant, so keep in model
+. 
+. * now test linearity of age with fractional polynomial
+. fp<age>: logit died <age> male sbp rr gcs
+{res}{txt}(fitting 44 models)
+{txt}(....10%....20%....30%....40%....50%....60%....70%....80%....90%....100%)
+{txt}
+{txt}Fractional polynomial comparisons:
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c TT}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+{txt}{space 13}{c |} Test              Deviance
+         age {c |}   df   Deviance       diff.       P   Powers
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c +}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+     omitted {c |}{res:    4   1017.919}{res:     69.713    0.000               }
+      linear {c |}{res:    3    954.156}{res:      5.949    0.114   1           }
+       m = 1 {c |}{res:    2    950.495}{res:      2.289    0.318   2           }
+       m = 2 {c |}{res:    0    948.206}{res:      0.000       --   0 0         }
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c BT}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+{p 0 6 0 67}Note: {helpb j_fp_testdf##|_new:Test df} is degrees of freedom, and {bf:P} = P > chi2 is sig. level for tests comparing models vs. model with m = 2 based on deviance difference, chi2.{p_end}
+
+{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:6})}{col 70} = {res}{ralign 6:354.19}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-474.10316}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2720}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}age_1 {c |}{col 14}{res}{space 2}-13.01503{col 26}{space 2} 3.458514{col 37}{space 1}   -3.76{col 46}{space 3}0.000{col 54}{space 4} -19.7936{col 67}{space 3}-6.236471
+{txt}{space 7}age_2 {c |}{col 14}{res}{space 2}   1.9622{col 26}{space 2} .4649199{col 37}{space 1}    4.22{col 46}{space 3}0.000{col 54}{space 4} 1.050974{col 67}{space 3} 2.873426
+{txt}{space 8}male {c |}{col 14}{res}{space 2} .5626119{col 26}{space 2} .2241488{col 37}{space 1}    2.51{col 46}{space 3}0.012{col 54}{space 4} .1232884{col 67}{space 3} 1.001935
+{txt}{space 9}sbp {c |}{col 14}{res}{space 2}-.0089347{col 26}{space 2} .0027619{col 37}{space 1}   -3.23{col 46}{space 3}0.001{col 54}{space 4}-.0143479{col 67}{space 3}-.0035214
+{txt}{space 10}rr {c |}{col 14}{res}{space 2} .0326068{col 26}{space 2} .0094882{col 37}{space 1}    3.44{col 46}{space 3}0.001{col 54}{space 4} .0140103{col 67}{space 3} .0512033
+{txt}{space 9}gcs {c |}{col 14}{res}{space 2}-.3069969{col 26}{space 2} .0183342{col 37}{space 1}  -16.74{col 46}{space 3}0.000{col 54}{space 4}-.3429313{col 67}{space 3}-.2710626
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 21.91818{col 26}{space 2} 6.392731{col 37}{space 1}    3.43{col 46}{space 3}0.001{col 54}{space 4} 9.388662{col 67}{space 3} 34.44771
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. display 1-chi2(1,954.156-950.495)
+{res}.05570019
+{txt}
+{com}. display 1-chi2(1, 1017.919 - 954.156)
+{res}1.332e-15
+{txt}
+{com}. 
+. * now test linearity of sbp with fractional polynomial
+. fp<sbp>: logit died age male <sbp> rr gcs
+{res}{txt}(fitting 44 models)
+{txt}(....10%....20%....30%....40%....50%....60%....70%....80%....90%....100%)
+{txt}
+{txt}Fractional polynomial comparisons:
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c TT}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+{txt}{space 13}{c |} Test              Deviance
+         sbp {c |}   df   Deviance       diff.       P   Powers
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c +}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+     omitted {c |}{res:    4    964.721}{res:     29.549    0.000               }
+      linear {c |}{res:    3    954.156}{res:     18.984    0.000   1           }
+       m = 1 {c |}{res:    2    945.604}{res:     10.432    0.005   -.5         }
+       m = 2 {c |}{res:    0    935.172}{res:      0.000       --   2 2         }
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c BT}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+{p 0 6 0 67}Note: {helpb j_fp_testdf##|_new:Test df} is degrees of freedom, and {bf:P} = P > chi2 is sig. level for tests comparing models vs. model with m = 2 based on deviance difference, chi2.{p_end}
+
+{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:6})}{col 70} = {res}{ralign 6:367.23}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-467.58577}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2820}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0356452{col 26}{space 2} .0050161{col 37}{space 1}    7.11{col 46}{space 3}0.000{col 54}{space 4} .0258138{col 67}{space 3} .0454765
+{txt}{space 8}male {c |}{col 14}{res}{space 2} .4851737{col 26}{space 2} .2248495{col 37}{space 1}    2.16{col 46}{space 3}0.031{col 54}{space 4} .0444767{col 67}{space 3} .9258707
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2}-.0013824{col 26}{space 2} .0002684{col 37}{space 1}   -5.15{col 46}{space 3}0.000{col 54}{space 4}-.0019085{col 67}{space 3}-.0008563
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2}  .000249{col 26}{space 2} .0000491{col 37}{space 1}    5.07{col 46}{space 3}0.000{col 54}{space 4} .0001527{col 67}{space 3} .0003453
+{txt}{space 10}rr {c |}{col 14}{res}{space 2} .0336261{col 26}{space 2} .0096603{col 37}{space 1}    3.48{col 46}{space 3}0.000{col 54}{space 4} .0146922{col 67}{space 3} .0525599
+{txt}{space 9}gcs {c |}{col 14}{res}{space 2}-.2896795{col 26}{space 2} .0185625{col 37}{space 1}  -15.61{col 46}{space 3}0.000{col 54}{space 4}-.3260613{col 67}{space 3}-.2532977
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .7709256{col 26}{space 2} .6068847{col 37}{space 1}    1.27{col 46}{space 3}0.204{col 54}{space 4}-.4185465{col 67}{space 3} 1.960398
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. display 1-chi2(1, 954.156 - 945.604)
+{res}.00345143
+{txt}
+{com}. 
+. * now test linearity of rr with fractional polynomial
+. fp<rr>: logit died age male sbp <rr> gcs
+{res}{txt}(fitting 44 models)
+{txt}(....10%....20%....30%....40%....50%....60%....70%....80%....90%....100%)
+{txt}
+{txt}Fractional polynomial comparisons:
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c TT}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+{txt}{space 13}{c |} Test              Deviance
+          rr {c |}   df   Deviance       diff.       P   Powers
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c +}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+     omitted {c |}{res:    4    965.126}{res:     24.285    0.000               }
+      linear {c |}{res:    3    954.156}{res:     13.315    0.004   1           }
+       m = 1 {c |}{res:    2    954.156}{res:     13.315    0.001   1           }
+       m = 2 {c |}{res:    0    940.841}{res:      0.000       --   -1 -.5      }
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c BT}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+{p 0 6 0 67}Note: {helpb j_fp_testdf##|_new:Test df} is degrees of freedom, and {bf:P} = P > chi2 is sig. level for tests comparing models vs. model with m = 2 based on deviance difference, chi2.{p_end}
+
+{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:6})}{col 70} = {res}{ralign 6:361.56}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-470.42034}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2776}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0390185{col 26}{space 2} .0049258{col 37}{space 1}    7.92{col 46}{space 3}0.000{col 54}{space 4} .0293642{col 67}{space 3} .0486728
+{txt}{space 8}male {c |}{col 14}{res}{space 2} .4900654{col 26}{space 2} .2223161{col 37}{space 1}    2.20{col 46}{space 3}0.027{col 54}{space 4}  .054334{col 67}{space 3} .9257969
+{txt}{space 9}sbp {c |}{col 14}{res}{space 2}-.0088481{col 26}{space 2} .0028232{col 37}{space 1}   -3.13{col 46}{space 3}0.002{col 54}{space 4}-.0143814{col 67}{space 3}-.0033148
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 64.20336{col 26}{space 2} 18.14412{col 37}{space 1}    3.54{col 46}{space 3}0.000{col 54}{space 4} 28.64155{col 67}{space 3} 99.76518
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2}-40.01791{col 26}{space 2} 9.822119{col 37}{space 1}   -4.07{col 46}{space 3}0.000{col 54}{space 4}-59.26891{col 67}{space 3}-20.76691
+{txt}{space 9}gcs {c |}{col 14}{res}{space 2}-.3011771{col 26}{space 2} .0188113{col 37}{space 1}  -16.01{col 46}{space 3}0.000{col 54}{space 4}-.3380465{col 67}{space 3}-.2643077
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 5.601899{col 26}{space 2} 1.333059{col 37}{space 1}    4.20{col 46}{space 3}0.000{col 54}{space 4} 2.989152{col 67}{space 3} 8.214646
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. 
+. * now test linearity of gcs with fractional polynomial
+. fp<gcs>: logit died age male sbp rr <gcs>
+{res}{txt}(fitting 44 models)
+{txt}(....10%....20%....30%....40%....50%....60%....70%....80%....90%....100%)
+{txt}
+{txt}Fractional polynomial comparisons:
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c TT}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+{txt}{space 13}{c |} Test              Deviance
+         gcs {c |}   df   Deviance       diff.       P   Powers
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c +}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+     omitted {c |}{res:    4   1235.360}{res:    292.553    0.000               }
+      linear {c |}{res:    3    954.156}{res:     11.349    0.010   1           }
+       m = 1 {c |}{res:    2    946.778}{res:      3.972    0.137   3           }
+       m = 2 {c |}{res:    0    942.806}{res:      0.000       --   -2 3        }
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c BT}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+{p 0 6 0 67}Note: {helpb j_fp_testdf##|_new:Test df} is degrees of freedom, and {bf:P} = P > chi2 is sig. level for tests comparing models vs. model with m = 2 based on deviance difference, chi2.{p_end}
+
+{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:6})}{col 70} = {res}{ralign 6:359.59}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-471.40321}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2761}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0376403{col 26}{space 2} .0048986{col 37}{space 1}    7.68{col 46}{space 3}0.000{col 54}{space 4} .0280392{col 67}{space 3} .0472414
+{txt}{space 8}male {c |}{col 14}{res}{space 2} .4733719{col 26}{space 2} .2215008{col 37}{space 1}    2.14{col 46}{space 3}0.033{col 54}{space 4} .0392382{col 67}{space 3} .9075055
+{txt}{space 9}sbp {c |}{col 14}{res}{space 2} -.008651{col 26}{space 2}  .002738{col 37}{space 1}   -3.16{col 46}{space 3}0.002{col 54}{space 4}-.0140173{col 67}{space 3}-.0032848
+{txt}{space 10}rr {c |}{col 14}{res}{space 2} .0323914{col 26}{space 2} .0096007{col 37}{space 1}    3.37{col 46}{space 3}0.001{col 54}{space 4} .0135745{col 67}{space 3} .0512084
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2} 6.373166{col 26}{space 2} 3.233774{col 37}{space 1}    1.97{col 46}{space 3}0.049{col 54}{space 4} .0350859{col 67}{space 3} 12.71125
+{txt}{space 7}gcs_2 {c |}{col 14}{res}{space 2}-.0008933{col 26}{space 2} .0000966{col 37}{space 1}   -9.24{col 46}{space 3}0.000{col 54}{space 4}-.0010826{col 67}{space 3}-.0007039
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-2.379844{col 26}{space 2} .5787111{col 37}{space 1}   -4.11{col 46}{space 3}0.000{col 54}{space 4}-3.514097{col 67}{space 3}-1.245591
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. display 1-chi2(1, 954.156 - 946.778)
+{res}.00660266
+{txt}
+{com}. display 1-chi2(1, 1235.360 - 954.156)
+{res}0
+{txt}
+{com}. * create 1-term model using gcs_1 for future modeling
+. fp<gcs>, dimension(1) replace: logit died age male sbp rr <gcs>
+{res}{txt}(fitting 8 models)
+{txt}(....10%....20%....30%....40%....50%....60%....70%....80%....90%....100%)
+{txt}
+{txt}Fractional polynomial comparisons:
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c TT}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+{txt}{space 13}{c |} Test              Deviance
+         gcs {c |}   df   Deviance       diff.       P   Powers
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c +}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+     omitted {c |}{res:    2   1235.360}{res:    288.581    0.000               }
+      linear {c |}{res:    1    954.156}{res:      7.377    0.007   1           }
+       m = 1 {c |}{res:    0    946.778}{res:      0.000       --   3           }
+{txt}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c BT}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}{c -}
+{p 0 6 0 67}Note: {helpb j_fp_testdf##|_new:Test df} is degrees of freedom, and {bf:P} = P > chi2 is sig. level for tests comparing models vs. model with m = 1 based on deviance difference, chi2.{p_end}
+
+{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:5})}{col 70} = {res}{ralign 6:355.62}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-473.38915}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2730}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} .0366963{col 26}{space 2} .0048477{col 37}{space 1}    7.57{col 46}{space 3}0.000{col 54}{space 4}  .027195{col 67}{space 3} .0461976
+{txt}{space 8}male {c |}{col 14}{res}{space 2}  .451865{col 26}{space 2} .2196569{col 37}{space 1}    2.06{col 46}{space 3}0.040{col 54}{space 4} .0213455{col 67}{space 3} .8823846
+{txt}{space 9}sbp {c |}{col 14}{res}{space 2}-.0086676{col 26}{space 2} .0027207{col 37}{space 1}   -3.19{col 46}{space 3}0.001{col 54}{space 4}-.0140001{col 67}{space 3} -.003335
+{txt}{space 10}rr {c |}{col 14}{res}{space 2} .0305122{col 26}{space 2} .0096102{col 37}{space 1}    3.17{col 46}{space 3}0.001{col 54}{space 4} .0116765{col 67}{space 3} .0493478
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2}-.0010368{col 26}{space 2} .0000629{col 37}{space 1}  -16.49{col 46}{space 3}0.000{col 54}{space 4}  -.00116{col 67}{space 3}-.0009136
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-1.807915{col 26}{space 2}  .493581{col 37}{space 1}   -3.66{col 46}{space 3}0.000{col 54}{space 4}-2.775316{col 67}{space 3}-.8405142
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+
+{com}. 
+. * now fit updated regression model with transformed variables
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:7})}{col 70} = {res}{ralign 6:382.90}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.74988}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2940}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Odds ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} 1.034628{col 26}{space 2} .0051693{col 37}{space 1}    6.81{col 46}{space 3}0.000{col 54}{space 4} 1.024546{col 67}{space 3} 1.044809
+{txt}{space 8}male {c |}{col 14}{res}{space 2} 1.569903{col 26}{space 2} .3509699{col 37}{space 1}    2.02{col 46}{space 3}0.044{col 54}{space 4} 1.012924{col 67}{space 3} 2.433149
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2} .9987003{col 26}{space 2} .0002717{col 37}{space 1}   -4.78{col 46}{space 3}0.000{col 54}{space 4} .9981679{col 67}{space 3} .9992331
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2} 1.000234{col 26}{space 2} .0000498{col 37}{space 1}    4.70{col 46}{space 3}0.000{col 54}{space 4} 1.000137{col 67}{space 3} 1.000332
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 6.69e+23{col 26}{space 2} 1.22e+25{col 37}{space 1}    3.00{col 46}{space 3}0.003{col 54}{space 4} 1.87e+08{col 67}{space 3} 2.40e+39
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2} 1.77e-15{col 26}{space 2} 1.76e-14{col 37}{space 1}   -3.42{col 46}{space 3}0.001{col 54}{space 4} 6.12e-24{col 67}{space 3} 5.13e-07
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2} .9990237{col 26}{space 2} .0000654{col 37}{space 1}  -14.93{col 46}{space 3}0.000{col 54}{space 4} .9988956{col 67}{space 3} .9991519
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 147.6436{col 26}{space 2} 202.4315{col 37}{space 1}    3.64{col 46}{space 3}0.000{col 54}{space 4} 10.04957{col 67}{space 3}  2169.11
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. 
+. * now fit two-way interactions
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:7})}{col 70} = {res}{ralign 6:382.90}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.74988}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2940}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Odds ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} 1.034628{col 26}{space 2} .0051693{col 37}{space 1}    6.81{col 46}{space 3}0.000{col 54}{space 4} 1.024546{col 67}{space 3} 1.044809
+{txt}{space 8}male {c |}{col 14}{res}{space 2} 1.569903{col 26}{space 2} .3509699{col 37}{space 1}    2.02{col 46}{space 3}0.044{col 54}{space 4} 1.012924{col 67}{space 3} 2.433149
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2} .9987003{col 26}{space 2} .0002717{col 37}{space 1}   -4.78{col 46}{space 3}0.000{col 54}{space 4} .9981679{col 67}{space 3} .9992331
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2} 1.000234{col 26}{space 2} .0000498{col 37}{space 1}    4.70{col 46}{space 3}0.000{col 54}{space 4} 1.000137{col 67}{space 3} 1.000332
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 6.69e+23{col 26}{space 2} 1.22e+25{col 37}{space 1}    3.00{col 46}{space 3}0.003{col 54}{space 4} 1.87e+08{col 67}{space 3} 2.40e+39
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2} 1.77e-15{col 26}{space 2} 1.76e-14{col 37}{space 1}   -3.42{col 46}{space 3}0.001{col 54}{space 4} 6.12e-24{col 67}{space 3} 5.13e-07
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2} .9990237{col 26}{space 2} .0000654{col 37}{space 1}  -14.93{col 46}{space 3}0.000{col 54}{space 4} .9988956{col 67}{space 3} .9991519
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} 147.6436{col 26}{space 2} 202.4315{col 37}{space 1}    3.64{col 46}{space 3}0.000{col 54}{space 4} 10.04957{col 67}{space 3}  2169.11
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. est store base
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.age##c.sbp_1
+{txt}note: {bf:age} omitted because of collinearity.
+note: {bf:sbp_1} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:382.93}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.73414}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2940}
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         died{col 15}{c |} Odds ratio{col 27}   Std. err.{col 39}      z{col 47}   P>|z|{col 55}     [95% con{col 68}f. interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}age {c |}{col 15}{res}{space 2} 1.033031{col 27}{space 2} .0103592{col 38}{space 1}    3.24{col 47}{space 3}0.001{col 55}{space 4} 1.012926{col 68}{space 3} 1.053536
+{txt}{space 9}male {c |}{col 15}{res}{space 2} 1.574112{col 27}{space 2} .3525332{col 38}{space 1}    2.03{col 47}{space 3}0.043{col 55}{space 4} 1.014853{col 68}{space 3} 2.441564
+{txt}{space 8}sbp_1 {c |}{col 15}{res}{space 2} .9987152{col 27}{space 2} .0002839{col 38}{space 1}   -4.52{col 47}{space 3}0.000{col 55}{space 4} .9981589{col 68}{space 3} .9992717
+{txt}{space 8}sbp_2 {c |}{col 15}{res}{space 2} 1.000231{col 27}{space 2} .0000538{col 38}{space 1}    4.29{col 47}{space 3}0.000{col 55}{space 4} 1.000125{col 68}{space 3} 1.000336
+{txt}{space 9}rr_1 {c |}{col 15}{res}{space 2} 8.18e+23{col 27}{space 2} 1.50e+25{col 38}{space 1}    3.01{col 47}{space 3}0.003{col 55}{space 4} 2.12e+08{col 68}{space 3} 3.16e+39
+{txt}{space 9}rr_2 {c |}{col 15}{res}{space 2} 1.55e-15{col 27}{space 2} 1.55e-14{col 38}{space 1}   -3.42{col 47}{space 3}0.001{col 55}{space 4} 5.05e-24{col 68}{space 3} 4.75e-07
+{txt}{space 8}gcs_1 {c |}{col 15}{res}{space 2}  .999024{col 27}{space 2} .0000654{col 38}{space 1}  -14.92{col 47}{space 3}0.000{col 55}{space 4} .9988958{col 68}{space 3} .9991521
+{txt}{space 10}age {c |}{col 15}{res}{space 2}        1{col 27}{txt}  (omitted)
+{space 8}sbp_1 {c |}{col 15}{res}{space 2}        1{col 27}{txt}  (omitted)
+{space 13} {c |}
+c.age#c.sbp_1 {c |}{col 15}{res}{space 2}        1{col 27}{space 2} 5.00e-07{col 38}{space 1}    0.18{col 47}{space 3}0.859{col 55}{space 4} .9999991{col 68}{space 3} 1.000001
+{txt}{space 13} {c |}
+{space 8}_cons {c |}{col 15}{res}{space 2} 157.9521{col 27}{space 2} 224.6895{col 38}{space 1}    3.56{col 47}{space 3}0.000{col 55}{space 4} 9.720234{col 68}{space 3} 2566.693
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:0.03}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.8592}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.age##c.sbp_2
+{txt}note: {bf:age} omitted because of collinearity.
+note: {bf:sbp_2} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:382.91}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.74098}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2940}
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         died{col 15}{c |} Odds ratio{col 27}   Std. err.{col 39}      z{col 47}   P>|z|{col 55}     [95% con{col 68}f. interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}age {c |}{col 15}{res}{space 2} 1.033536{col 27}{space 2} .0096669{col 38}{space 1}    3.53{col 47}{space 3}0.000{col 55}{space 4} 1.014762{col 68}{space 3} 1.052658
+{txt}{space 9}male {c |}{col 15}{res}{space 2} 1.573178{col 27}{space 2} .3524342{col 38}{space 1}    2.02{col 47}{space 3}0.043{col 55}{space 4} 1.014112{col 68}{space 3}  2.44045
+{txt}{space 8}sbp_1 {c |}{col 15}{res}{space 2} .9987152{col 27}{space 2} .0002936{col 38}{space 1}   -4.37{col 47}{space 3}0.000{col 55}{space 4}   .99814{col 68}{space 3} .9992908
+{txt}{space 8}sbp_2 {c |}{col 15}{res}{space 2} 1.000231{col 27}{space 2}  .000056{col 38}{space 1}    4.12{col 47}{space 3}0.000{col 55}{space 4} 1.000121{col 68}{space 3} 1.000341
+{txt}{space 9}rr_1 {c |}{col 15}{res}{space 2} 7.77e+23{col 27}{space 2} 1.42e+25{col 38}{space 1}    3.00{col 47}{space 3}0.003{col 55}{space 4} 2.02e+08{col 68}{space 3} 3.00e+39
+{txt}{space 9}rr_2 {c |}{col 15}{res}{space 2} 1.60e-15{col 27}{space 2} 1.60e-14{col 38}{space 1}   -3.42{col 47}{space 3}0.001{col 55}{space 4} 5.24e-24{col 68}{space 3} 4.91e-07
+{txt}{space 8}gcs_1 {c |}{col 15}{res}{space 2} .9990239{col 27}{space 2} .0000654{col 38}{space 1}  -14.92{col 47}{space 3}0.000{col 55}{space 4} .9988957{col 68}{space 3} .9991521
+{txt}{space 10}age {c |}{col 15}{res}{space 2}        1{col 27}{txt}  (omitted)
+{space 8}sbp_2 {c |}{col 15}{res}{space 2}        1{col 27}{txt}  (omitted)
+{space 13} {c |}
+c.age#c.sbp_2 {c |}{col 15}{res}{space 2}        1{col 27}{space 2} 9.18e-08{col 38}{space 1}    0.13{col 47}{space 3}0.894{col 55}{space 4} .9999998{col 68}{space 3}        1
+{txt}{space 13} {c |}
+{space 8}_cons {c |}{col 15}{res}{space 2} 154.3994{col 27}{space 2} 217.8993{col 38}{space 1}    3.57{col 47}{space 3}0.000{col 55}{space 4}  9.71338{col 68}{space 3} 2454.262
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:0.02}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.8939}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.age##c.rr_1
+{txt}note: {bf:age} omitted because of collinearity.
+note: {bf:rr_1} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:383.25}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 9:-459.5711}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2943}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Odds ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} 1.027606{col 26}{space 2} .0128514{col 37}{space 1}    2.18{col 46}{space 3}0.029{col 54}{space 4} 1.002724{col 67}{space 3} 1.053105
+{txt}{space 8}male {c |}{col 14}{res}{space 2} 1.579717{col 26}{space 2}  .353926{col 37}{space 1}    2.04{col 46}{space 3}0.041{col 54}{space 4} 1.018293{col 67}{space 3} 2.450676
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2} .9986906{col 26}{space 2} .0002715{col 37}{space 1}   -4.82{col 46}{space 3}0.000{col 54}{space 4} .9981586{col 67}{space 3} .9992229
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2} 1.000236{col 26}{space 2} .0000498{col 37}{space 1}    4.74{col 46}{space 3}0.000{col 54}{space 4} 1.000139{col 67}{space 3} 1.000334
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 1.91e+22{col 26}{space 2} 3.68e+23{col 37}{space 1}    2.67{col 46}{space 3}0.008{col 54}{space 4} 819348.8{col 67}{space 3} 4.47e+38
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2} 5.66e-16{col 26}{space 2} 5.73e-15{col 37}{space 1}   -3.47{col 46}{space 3}0.001{col 54}{space 4} 1.36e-24{col 67}{space 3} 2.36e-07
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2} .9990254{col 26}{space 2} .0000654{col 37}{space 1}  -14.90{col 46}{space 3}0.000{col 54}{space 4} .9988973{col 67}{space 3} .9991535
+{txt}{space 9}age {c |}{col 14}{res}{space 2}        1{col 26}{txt}  (omitted)
+{space 8}rr_1 {c |}{col 14}{res}{space 2}        1{col 26}{txt}  (omitted)
+{space 12} {c |}
+c.age#c.rr_1 {c |}{col 14}{res}{space 2} 1.141387{col 26}{space 2}  .254892{col 37}{space 1}    0.59{col 46}{space 3}0.554{col 54}{space 4}  .736791{col 67}{space 3} 1.768159
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 231.4331{col 26}{space 2} 361.4137{col 37}{space 1}    3.49{col 46}{space 3}0.000{col 54}{space 4} 10.84328{col 67}{space 3} 4939.583
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:0.36}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.5499}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.age##c.rr_2
+{txt}note: {bf:age} omitted because of collinearity.
+note: {bf:rr_2} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:383.09}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.65382}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2941}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Odds ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} 1.023247{col 26}{space 2} .0263584{col 37}{space 1}    0.89{col 46}{space 3}0.372{col 54}{space 4} .9728684{col 67}{space 3} 1.076235
+{txt}{space 8}male {c |}{col 14}{res}{space 2} 1.577095{col 26}{space 2} .3531044{col 37}{space 1}    2.03{col 46}{space 3}0.042{col 54}{space 4} 1.016899{col 67}{space 3} 2.445896
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2} .9986925{col 26}{space 2} .0002717{col 37}{space 1}   -4.81{col 46}{space 3}0.000{col 54}{space 4} .9981602{col 67}{space 3} .9992251
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2} 1.000236{col 26}{space 2} .0000498{col 37}{space 1}    4.73{col 46}{space 3}0.000{col 54}{space 4} 1.000138{col 67}{space 3} 1.000333
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 2.29e+24{col 26}{space 2} 4.23e+25{col 37}{space 1}    3.04{col 46}{space 3}0.002{col 54}{space 4} 4.27e+08{col 67}{space 3} 1.23e+40
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2} 1.05e-16{col 26}{space 2} 1.24e-15{col 37}{space 1}   -3.11{col 46}{space 3}0.002{col 54}{space 4} 8.92e-27{col 67}{space 3} 1.24e-06
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2} .9990247{col 26}{space 2} .0000654{col 37}{space 1}  -14.91{col 46}{space 3}0.000{col 54}{space 4} .9988966{col 67}{space 3} .9991528
+{txt}{space 9}age {c |}{col 14}{res}{space 2}        1{col 26}{txt}  (omitted)
+{space 8}rr_2 {c |}{col 14}{res}{space 2}        1{col 26}{txt}  (omitted)
+{space 12} {c |}
+c.age#c.rr_2 {c |}{col 14}{res}{space 2} 1.050788{col 26}{space 2}  .119034{col 37}{space 1}    0.44{col 46}{space 3}0.662{col 54}{space 4} .8415705{col 67}{space 3} 1.312018
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 263.2635{col 26}{space 2} 499.6484{col 37}{space 1}    2.94{col 46}{space 3}0.003{col 54}{space 4} 6.381073{col 67}{space 3} 10861.45
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:0.19}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.6612}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.age##c.gcs_1
+{txt}note: {bf:age} omitted because of collinearity.
+note: {bf:gcs_1} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:383.29}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.55116}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2943}
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}         died{col 15}{c |} Odds ratio{col 27}   Std. err.{col 39}      z{col 47}   P>|z|{col 55}     [95% con{col 68}f. interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}age {c |}{col 15}{res}{space 2} 1.030282{col 27}{space 2} .0085488{col 38}{space 1}    3.60{col 47}{space 3}0.000{col 55}{space 4} 1.013662{col 68}{space 3} 1.047174
+{txt}{space 9}male {c |}{col 15}{res}{space 2}  1.57655{col 27}{space 2} .3512722{col 38}{space 1}    2.04{col 47}{space 3}0.041{col 55}{space 4}  1.01871{col 68}{space 3} 2.439858
+{txt}{space 8}sbp_1 {c |}{col 15}{res}{space 2} .9987045{col 27}{space 2} .0002711{col 38}{space 1}   -4.78{col 47}{space 3}0.000{col 55}{space 4} .9981733{col 68}{space 3}  .999236
+{txt}{space 8}sbp_2 {c |}{col 15}{res}{space 2} 1.000234{col 27}{space 2} .0000497{col 38}{space 1}    4.70{col 47}{space 3}0.000{col 55}{space 4} 1.000136{col 68}{space 3} 1.000331
+{txt}{space 9}rr_1 {c |}{col 15}{res}{space 2} 5.35e+23{col 27}{space 2} 9.78e+24{col 38}{space 1}    2.99{col 47}{space 3}0.003{col 55}{space 4} 1.48e+08{col 68}{space 3} 1.93e+39
+{txt}{space 9}rr_2 {c |}{col 15}{res}{space 2} 2.02e-15{col 27}{space 2} 2.01e-14{col 38}{space 1}   -3.40{col 47}{space 3}0.001{col 55}{space 4} 6.85e-24{col 68}{space 3} 5.94e-07
+{txt}{space 8}gcs_1 {c |}{col 15}{res}{space 2}  .998924{col 27}{space 2} .0001714{col 38}{space 1}   -6.27{col 47}{space 3}0.000{col 55}{space 4}  .998588{col 68}{space 3}   .99926
+{txt}{space 10}age {c |}{col 15}{res}{space 2}        1{col 27}{txt}  (omitted)
+{space 8}gcs_1 {c |}{col 15}{res}{space 2}        1{col 27}{txt}  (omitted)
+{space 13} {c |}
+c.age#c.gcs_1 {c |}{col 15}{res}{space 2} 1.000002{col 27}{space 2} 3.35e-06{col 38}{space 1}    0.63{col 47}{space 3}0.527{col 55}{space 4} .9999956{col 68}{space 3} 1.000009
+{txt}{space 13} {c |}
+{space 8}_cons {c |}{col 15}{res}{space 2} 171.3131{col 27}{space 2} 238.8202{col 38}{space 1}    3.69{col 47}{space 3}0.000{col 55}{space 4} 11.14724{col 68}{space 3} 2632.775
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:0.40}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.5284}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 i.male##c.sbp_1
+{txt}note: {bf:1.male} omitted because of collinearity.
+note: {bf:sbp_1} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:383.62}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.39073}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2945}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Odds ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} 1.034539{col 26}{space 2} .0051811{col 37}{space 1}    6.78{col 46}{space 3}0.000{col 54}{space 4} 1.024433{col 67}{space 3} 1.044743
+{txt}{space 8}male {c |}{col 14}{res}{space 2} 2.195129{col 26}{space 2} 1.001926{col 37}{space 1}    1.72{col 46}{space 3}0.085{col 54}{space 4} .8973146{col 67}{space 3} 5.370014
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2} .9987477{col 26}{space 2} .0002748{col 37}{space 1}   -4.55{col 46}{space 3}0.000{col 54}{space 4} .9982093{col 67}{space 3} .9992864
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2} 1.000228{col 26}{space 2} .0000499{col 37}{space 1}    4.57{col 46}{space 3}0.000{col 54}{space 4}  1.00013{col 67}{space 3} 1.000326
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 9.83e+23{col 26}{space 2} 1.80e+25{col 37}{space 1}    3.02{col 46}{space 3}0.003{col 54}{space 4} 2.67e+08{col 67}{space 3} 3.61e+39
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2} 1.42e-15{col 26}{space 2} 1.41e-14{col 37}{space 1}   -3.44{col 46}{space 3}0.001{col 54}{space 4} 4.91e-24{col 67}{space 3} 4.11e-07
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2} .9990216{col 26}{space 2} .0000655{col 37}{space 1}  -14.93{col 46}{space 3}0.000{col 54}{space 4} .9988932{col 67}{space 3}   .99915
+{txt}{space 6}1.male {c |}{col 14}{res}{space 2}        1{col 26}{txt}  (omitted)
+{space 7}sbp_1 {c |}{col 14}{res}{space 2}        1{col 26}{txt}  (omitted)
+{space 12} {c |}
+male#c.sbp_1 {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} .9999819{col 26}{space 2} .0000213{col 37}{space 1}   -0.85{col 46}{space 3}0.395{col 54}{space 4} .9999402{col 67}{space 3} 1.000024
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 113.0094{col 26}{space 2} 158.5778{col 37}{space 1}    3.37{col 46}{space 3}0.001{col 54}{space 4} 7.222478{col 67}{space 3} 1768.248
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:0.72}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.3967}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 i.male##c.sbp_2
+{txt}note: {bf:1.male} omitted because of collinearity.
+note: {bf:sbp_2} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:383.50}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.44746}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2945}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Odds ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2}  1.03454{col 26}{space 2} .0051803{col 37}{space 1}    6.78{col 46}{space 3}0.000{col 54}{space 4} 1.024437{col 67}{space 3} 1.044743
+{txt}{space 8}male {c |}{col 14}{res}{space 2} 2.075658{col 26}{space 2}   .88199{col 37}{space 1}    1.72{col 46}{space 3}0.086{col 54}{space 4}  .902532{col 67}{space 3} 4.773632
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2}  .998732{col 26}{space 2} .0002723{col 37}{space 1}   -4.65{col 46}{space 3}0.000{col 54}{space 4} .9981985{col 67}{space 3} .9992658
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2} 1.000231{col 26}{space 2} .0000496{col 37}{space 1}    4.65{col 46}{space 3}0.000{col 54}{space 4} 1.000134{col 67}{space 3} 1.000328
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 9.33e+23{col 26}{space 2} 1.71e+25{col 37}{space 1}    3.02{col 46}{space 3}0.003{col 54}{space 4} 2.54e+08{col 67}{space 3} 3.43e+39
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2} 1.47e-15{col 26}{space 2} 1.46e-14{col 37}{space 1}   -3.44{col 46}{space 3}0.001{col 54}{space 4} 5.07e-24{col 67}{space 3} 4.25e-07
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2} .9990217{col 26}{space 2} .0000655{col 37}{space 1}  -14.93{col 46}{space 3}0.000{col 54}{space 4} .9988934{col 67}{space 3} .9991501
+{txt}{space 6}1.male {c |}{col 14}{res}{space 2}        1{col 26}{txt}  (omitted)
+{space 7}sbp_2 {c |}{col 14}{res}{space 2}        1{col 26}{txt}  (omitted)
+{space 12} {c |}
+male#c.sbp_2 {c |}
+{space 10}1  {c |}{col 14}{res}{space 2}  .999997{col 26}{space 2} 3.88e-06{col 37}{space 1}   -0.78{col 46}{space 3}0.435{col 54}{space 4} .9999894{col 67}{space 3} 1.000005
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 117.7294{col 26}{space 2} 164.6478{col 37}{space 1}    3.41{col 46}{space 3}0.001{col 54}{space 4} 7.593744{col 67}{space 3} 1825.214
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:0.60}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.4367}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 i.male##c.rr_1
+{txt}note: {bf:1.male} omitted because of collinearity.
+note: {bf:rr_1} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:383.39}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.50487}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2944}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Odds ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} 1.034728{col 26}{space 2} .0051741{col 37}{space 1}    6.83{col 46}{space 3}0.000{col 54}{space 4} 1.024636{col 67}{space 3} 1.044919
+{txt}{space 8}male {c |}{col 14}{res}{space 2} 1.141797{col 26}{space 2} .5794846{col 37}{space 1}    0.26{col 46}{space 3}0.794{col 54}{space 4} .4222671{col 67}{space 3} 3.087383
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2} .9987135{col 26}{space 2} .0002728{col 37}{space 1}   -4.71{col 46}{space 3}0.000{col 54}{space 4}  .998179{col 67}{space 3} .9992483
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2} 1.000232{col 26}{space 2}   .00005{col 37}{space 1}    4.64{col 46}{space 3}0.000{col 54}{space 4} 1.000134{col 67}{space 3}  1.00033
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 2.05e+23{col 26}{space 2} 3.82e+24{col 37}{space 1}    2.88{col 46}{space 3}0.004{col 54}{space 4} 2.88e+07{col 67}{space 3} 1.46e+39
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2} 3.46e-16{col 26}{space 2} 3.55e-15{col 37}{space 1}   -3.46{col 46}{space 3}0.001{col 54}{space 4} 6.10e-25{col 67}{space 3} 1.96e-07
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2} .9990247{col 26}{space 2} .0000654{col 37}{space 1}  -14.91{col 46}{space 3}0.000{col 54}{space 4} .9988965{col 67}{space 3} .9991528
+{txt}{space 6}1.male {c |}{col 14}{res}{space 2}        1{col 26}{txt}  (omitted)
+{space 8}rr_1 {c |}{col 14}{res}{space 2}        1{col 26}{txt}  (omitted)
+{space 12} {c |}
+{space 1}male#c.rr_1 {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} 357.4102{col 26}{space 2} 3026.367{col 37}{space 1}    0.69{col 46}{space 3}0.488{col 54}{space 4} .0000222{col 67}{space 3} 5.76e+09
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 222.0366{col 26}{space 2} 331.8208{col 37}{space 1}    3.62{col 46}{space 3}0.000{col 54}{space 4} 11.86734{col 67}{space 3} 4154.282
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:0.49}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.4839}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 i.male##c.rr_2
+{txt}note: {bf:1.male} omitted because of collinearity.
+note: {bf:rr_2} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:383.42}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.48847}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2944}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Odds ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2}  1.03475{col 26}{space 2} .0051764{col 37}{space 1}    6.83{col 46}{space 3}0.000{col 54}{space 4} 1.024654{col 67}{space 3} 1.044946
+{txt}{space 8}male {c |}{col 14}{res}{space 2} .7162141{col 26}{space 2} .7940226{col 37}{space 1}   -0.30{col 46}{space 3}0.763{col 54}{space 4} .0815395{col 67}{space 3} 6.290972
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2}  .998714{col 26}{space 2}  .000273{col 37}{space 1}   -4.71{col 46}{space 3}0.000{col 54}{space 4} .9981792{col 67}{space 3} .9992492
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2} 1.000232{col 26}{space 2} .0000501{col 37}{space 1}    4.63{col 46}{space 3}0.000{col 54}{space 4} 1.000134{col 67}{space 3}  1.00033
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 1.26e+25{col 26}{space 2} 2.39e+26{col 37}{space 1}    3.06{col 46}{space 3}0.002{col 54}{space 4} 1.04e+09{col 67}{space 3} 1.54e+41
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2} 2.88e-17{col 26}{space 2} 3.31e-16{col 37}{space 1}   -3.31{col 46}{space 3}0.001{col 54}{space 4} 4.60e-27{col 67}{space 3} 1.80e-07
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2} .9990244{col 26}{space 2} .0000654{col 37}{space 1}  -14.91{col 46}{space 3}0.000{col 54}{space 4} .9988962{col 67}{space 3} .9991526
+{txt}{space 6}1.male {c |}{col 14}{res}{space 2}        1{col 26}{txt}  (omitted)
+{space 8}rr_2 {c |}{col 14}{res}{space 2}        1{col 26}{txt}  (omitted)
+{space 12} {c |}
+{space 1}male#c.rr_2 {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} 31.24506{col 26}{space 2}  149.269{col 37}{space 1}    0.72{col 46}{space 3}0.471{col 54}{space 4} .0026809{col 67}{space 3} 364149.7
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 312.4972{col 26}{space 2} 538.3592{col 37}{space 1}    3.33{col 46}{space 3}0.001{col 54}{space 4} 10.67643{col 67}{space 3} 9146.735
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:0.52}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.4696}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 i.male##c.gcs_1
+{txt}note: {bf:1.male} omitted because of collinearity.
+note: {bf:gcs_1} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:383.86}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.27004}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2947}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Odds ratio{col 26}   Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 9}age {c |}{col 14}{res}{space 2} 1.034923{col 26}{space 2} .0051815{col 37}{space 1}    6.86{col 46}{space 3}0.000{col 54}{space 4} 1.024817{col 67}{space 3} 1.045128
+{txt}{space 8}male {c |}{col 14}{res}{space 2}  1.21579{col 26}{space 2} .4152116{col 37}{space 1}    0.57{col 46}{space 3}0.567{col 54}{space 4}  .622529{col 67}{space 3} 2.374419
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2} .9986904{col 26}{space 2} .0002715{col 37}{space 1}   -4.82{col 46}{space 3}0.000{col 54}{space 4} .9981584{col 67}{space 3} .9992227
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2} 1.000236{col 26}{space 2} .0000498{col 37}{space 1}    4.74{col 46}{space 3}0.000{col 54}{space 4} 1.000139{col 67}{space 3} 1.000334
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 4.34e+23{col 26}{space 2} 7.93e+24{col 37}{space 1}    2.98{col 46}{space 3}0.003{col 54}{space 4} 1.23e+08{col 67}{space 3} 1.53e+39
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2} 2.18e-15{col 26}{space 2} 2.17e-14{col 37}{space 1}   -3.40{col 46}{space 3}0.001{col 54}{space 4} 7.59e-24{col 67}{space 3} 6.26e-07
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2} .9989045{col 26}{space 2} .0001401{col 37}{space 1}   -7.81{col 46}{space 3}0.000{col 54}{space 4} .9986299{col 67}{space 3} .9991792
+{txt}{space 6}1.male {c |}{col 14}{res}{space 2}        1{col 26}{txt}  (omitted)
+{space 7}gcs_1 {c |}{col 14}{res}{space 2}        1{col 26}{txt}  (omitted)
+{space 12} {c |}
+male#c.gcs_1 {c |}
+{space 10}1  {c |}{col 14}{res}{space 2} 1.000151{col 26}{space 2} .0001551{col 37}{space 1}    0.97{col 46}{space 3}0.332{col 54}{space 4} .9998466{col 67}{space 3} 1.000455
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 176.3964{col 26}{space 2} 243.6317{col 37}{space 1}    3.75{col 46}{space 3}0.000{col 54}{space 4} 11.77182{col 67}{space 3} 2643.235
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:0.96}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.3273}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.sbp_1##c.rr_1
+{txt}note: {bf:sbp_1} omitted because of collinearity.
+note: {bf:rr_1} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:383.29}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.55244}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2943}
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          died{col 16}{c |} Odds ratio{col 28}   Std. err.{col 40}      z{col 48}   P>|z|{col 56}     [95% con{col 69}f. interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}age {c |}{col 16}{res}{space 2}   1.0348{col 28}{space 2} .0051712{col 39}{space 1}    6.85{col 48}{space 3}0.000{col 56}{space 4} 1.024714{col 69}{space 3} 1.044985
+{txt}{space 10}male {c |}{col 16}{res}{space 2} 1.568082{col 28}{space 2} .3504643{col 39}{space 1}    2.01{col 48}{space 3}0.044{col 56}{space 4} 1.011874{col 69}{space 3} 2.430028
+{txt}{space 9}sbp_1 {c |}{col 16}{res}{space 2}  .998722{col 28}{space 2} .0002747{col 39}{space 1}   -4.65{col 48}{space 3}0.000{col 56}{space 4} .9981838{col 69}{space 3} .9992605
+{txt}{space 9}sbp_2 {c |}{col 16}{res}{space 2} 1.000233{col 28}{space 2}   .00005{col 39}{space 1}    4.67{col 48}{space 3}0.000{col 56}{space 4} 1.000135{col 69}{space 3} 1.000331
+{txt}{space 10}rr_1 {c |}{col 16}{res}{space 2} 9.10e+23{col 28}{space 2} 1.69e+25{col 39}{space 1}    2.98{col 48}{space 3}0.003{col 56}{space 4} 1.58e+08{col 69}{space 3} 5.23e+39
+{txt}{space 10}rr_2 {c |}{col 16}{res}{space 2} 1.39e-14{col 28}{space 2} 1.48e-13{col 39}{space 1}   -3.00{col 48}{space 3}0.003{col 56}{space 4} 1.27e-23{col 69}{space 3} .0000153
+{txt}{space 9}gcs_1 {c |}{col 16}{res}{space 2} .9990231{col 28}{space 2} .0000655{col 39}{space 1}  -14.91{col 48}{space 3}0.000{col 56}{space 4} .9988948{col 69}{space 3} .9991515
+{txt}{space 9}sbp_1 {c |}{col 16}{res}{space 2}        1{col 28}{txt}  (omitted)
+{space 10}rr_1 {c |}{col 16}{res}{space 2}        1{col 28}{txt}  (omitted)
+{space 14} {c |}
+c.sbp_1#c.rr_1 {c |}{col 16}{res}{space 2} .9996903{col 28}{space 2} .0005083{col 39}{space 1}   -0.61{col 48}{space 3}0.542{col 56}{space 4} .9986946{col 69}{space 3} 1.000687
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2} 89.76378{col 28}{space 2} 144.1871{col 39}{space 1}    2.80{col 48}{space 3}0.005{col 56}{space 4} 3.853195{col 69}{space 3} 2091.132
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 1 success completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:0.39}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.5297}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.sbp_1##c.rr_2
+{txt}note: {bf:sbp_1} omitted because of collinearity.
+note: {bf:rr_2} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:383.63}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.38258}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2946}
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          died{col 16}{c |} Odds ratio{col 28}   Std. err.{col 40}      z{col 48}   P>|z|{col 56}     [95% con{col 69}f. interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}age {c |}{col 16}{res}{space 2} 1.034962{col 28}{space 2} .0051772{col 39}{space 1}    6.87{col 48}{space 3}0.000{col 56}{space 4} 1.024865{col 69}{space 3} 1.045159
+{txt}{space 10}male {c |}{col 16}{res}{space 2}  1.56828{col 28}{space 2}  .350424{col 39}{space 1}    2.01{col 48}{space 3}0.044{col 56}{space 4} 1.012109{col 69}{space 3} 2.430078
+{txt}{space 9}sbp_1 {c |}{col 16}{res}{space 2} .9987489{col 28}{space 2} .0002786{col 39}{space 1}   -4.49{col 48}{space 3}0.000{col 56}{space 4}  .998203{col 69}{space 3} .9992951
+{txt}{space 9}sbp_2 {c |}{col 16}{res}{space 2} 1.000234{col 28}{space 2}   .00005{col 39}{space 1}    4.69{col 48}{space 3}0.000{col 56}{space 4} 1.000136{col 69}{space 3} 1.000332
+{txt}{space 10}rr_1 {c |}{col 16}{res}{space 2} 3.54e+21{col 28}{space 2} 6.95e+22{col 39}{space 1}    2.53{col 48}{space 3}0.011{col 56}{space 4} 70649.99{col 69}{space 3} 1.78e+38
+{txt}{space 10}rr_2 {c |}{col 16}{res}{space 2} 5.97e-13{col 28}{space 2} 7.31e-12{col 39}{space 1}   -2.30{col 48}{space 3}0.022{col 56}{space 4} 2.26e-23{col 69}{space 3}  .015768
+{txt}{space 9}gcs_1 {c |}{col 16}{res}{space 2} .9990228{col 28}{space 2} .0000655{col 39}{space 1}  -14.91{col 48}{space 3}0.000{col 56}{space 4} .9988945{col 69}{space 3} .9991512
+{txt}{space 9}sbp_1 {c |}{col 16}{res}{space 2}        1{col 28}{txt}  (omitted)
+{space 10}rr_2 {c |}{col 16}{res}{space 2}        1{col 28}{txt}  (omitted)
+{space 14} {c |}
+c.sbp_1#c.rr_2 {c |}{col 16}{res}{space 2} .9997843{col 28}{space 2} .0002561{col 39}{space 1}   -0.84{col 48}{space 3}0.400{col 56}{space 4} .9992825{col 69}{space 3} 1.000286
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2} 51.55963{col 28}{space 2} 96.23429{col 39}{space 1}    2.11{col 48}{space 3}0.035{col 56}{space 4} 1.329141{col 69}{space 3} 2000.085
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:0.73}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.3914}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.sbp_1##c.gcs_1
+{txt}note: {bf:sbp_1} omitted because of collinearity.
+note: {bf:gcs_1} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:389.45}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-456.47334}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2990}
+
+{txt}{hline 16}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}           died{col 17}{c |} Odds ratio{col 29}   Std. err.{col 41}      z{col 49}   P>|z|{col 57}     [95% con{col 70}f. interval]
+{hline 16}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}age {c |}{col 17}{res}{space 2} 1.034153{col 29}{space 2} .0051701{col 40}{space 1}    6.72{col 49}{space 3}0.000{col 57}{space 4} 1.024069{col 70}{space 3} 1.044336
+{txt}{space 11}male {c |}{col 17}{res}{space 2} 1.540586{col 29}{space 2} .3457882{col 40}{space 1}    1.93{col 49}{space 3}0.054{col 57}{space 4} .9922747{col 70}{space 3} 2.391885
+{txt}{space 10}sbp_1 {c |}{col 17}{res}{space 2} .9987485{col 29}{space 2} .0002895{col 40}{space 1}   -4.32{col 49}{space 3}0.000{col 57}{space 4} .9981813{col 70}{space 3}  .999316
+{txt}{space 10}sbp_2 {c |}{col 17}{res}{space 2} 1.000231{col 29}{space 2} .0000532{col 40}{space 1}    4.34{col 49}{space 3}0.000{col 57}{space 4} 1.000126{col 70}{space 3} 1.000335
+{txt}{space 11}rr_1 {c |}{col 17}{res}{space 2} 1.89e+25{col 29}{space 2} 3.47e+26{col 40}{space 1}    3.17{col 49}{space 3}0.002{col 57}{space 4} 4.51e+09{col 70}{space 3} 7.95e+40
+{txt}{space 11}rr_2 {c |}{col 17}{res}{space 2} 5.27e-16{col 29}{space 2} 5.26e-15{col 40}{space 1}   -3.53{col 49}{space 3}0.000{col 57}{space 4} 1.71e-24{col 70}{space 3} 1.63e-07
+{txt}{space 10}gcs_1 {c |}{col 17}{res}{space 2} .9993459{col 29}{space 2} .0001416{col 40}{space 1}   -4.62{col 49}{space 3}0.000{col 57}{space 4} .9990683{col 70}{space 3} .9996236
+{txt}{space 10}sbp_1 {c |}{col 17}{res}{space 2}        1{col 29}{txt}  (omitted)
+{space 10}gcs_1 {c |}{col 17}{res}{space 2}        1{col 29}{txt}  (omitted)
+{space 15} {c |}
+c.sbp_1#c.gcs_1 {c |}{col 17}{res}{space 2}        1{col 29}{space 2} 7.30e-09{col 40}{space 1}   -2.48{col 49}{space 3}0.013{col 57}{space 4}        1{col 70}{space 3}        1
+{txt}{space 15} {c |}
+{space 10}_cons {c |}{col 17}{res}{space 2} 98.63639{col 29}{space 2} 136.8623{col 40}{space 1}    3.31{col 49}{space 3}0.001{col 57}{space 4} 6.500668{col 70}{space 3} 1496.636
+{txt}{hline 16}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:6.55}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.0105}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.sbp_2##c.rr_1
+{txt}note: {bf:sbp_2} omitted because of collinearity.
+note: {bf:rr_1} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:383.23}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.58262}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2943}
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          died{col 16}{c |} Odds ratio{col 28}   Std. err.{col 40}      z{col 48}   P>|z|{col 56}     [95% con{col 69}f. interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}age {c |}{col 16}{res}{space 2} 1.034784{col 28}{space 2} .0051715{col 39}{space 1}    6.84{col 48}{space 3}0.000{col 56}{space 4} 1.024697{col 69}{space 3}  1.04497
+{txt}{space 10}male {c |}{col 16}{res}{space 2} 1.568641{col 28}{space 2} .3506098{col 39}{space 1}    2.01{col 48}{space 3}0.044{col 56}{space 4} 1.012208{col 69}{space 3} 2.430956
+{txt}{space 9}sbp_1 {c |}{col 16}{res}{space 2} .9987058{col 28}{space 2} .0002726{col 39}{space 1}   -4.75{col 48}{space 3}0.000{col 56}{space 4} .9981717{col 69}{space 3} .9992401
+{txt}{space 9}sbp_2 {c |}{col 16}{res}{space 2} 1.000236{col 28}{space 2} .0000501{col 39}{space 1}    4.72{col 48}{space 3}0.000{col 56}{space 4} 1.000138{col 69}{space 3} 1.000334
+{txt}{space 10}rr_1 {c |}{col 16}{res}{space 2} 6.28e+23{col 28}{space 2} 1.16e+25{col 39}{space 1}    2.96{col 48}{space 3}0.003{col 56}{space 4} 1.12e+08{col 69}{space 3} 3.53e+39
+{txt}{space 10}rr_2 {c |}{col 16}{res}{space 2} 1.16e-14{col 28}{space 2} 1.23e-13{col 39}{space 1}   -3.03{col 48}{space 3}0.002{col 56}{space 4} 1.09e-23{col 69}{space 3} .0000123
+{txt}{space 9}gcs_1 {c |}{col 16}{res}{space 2} .9990231{col 28}{space 2} .0000655{col 39}{space 1}  -14.91{col 48}{space 3}0.000{col 56}{space 4} .9988948{col 69}{space 3} .9991515
+{txt}{space 9}sbp_2 {c |}{col 16}{res}{space 2}        1{col 28}{txt}  (omitted)
+{space 10}rr_1 {c |}{col 16}{res}{space 2}        1{col 28}{txt}  (omitted)
+{space 14} {c |}
+c.sbp_2#c.rr_1 {c |}{col 16}{res}{space 2} .9999471{col 28}{space 2} .0000943{col 39}{space 1}   -0.56{col 48}{space 3}0.575{col 56}{space 4} .9997622{col 69}{space 3} 1.000132
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2} 95.47014{col 28}{space 2} 151.4363{col 39}{space 1}    2.87{col 48}{space 3}0.004{col 56}{space 4} 4.262635{col 69}{space 3} 2138.243
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 1 success completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:0.33}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.5630}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.sbp_2##c.rr_2
+{txt}note: {bf:sbp_2} omitted because of collinearity.
+note: {bf:rr_2} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:383.54}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.42927}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2945}
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          died{col 16}{c |} Odds ratio{col 28}   Std. err.{col 40}      z{col 48}   P>|z|{col 56}     [95% con{col 69}f. interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}age {c |}{col 16}{res}{space 2} 1.034936{col 28}{space 2} .0051774{col 39}{space 1}    6.86{col 48}{space 3}0.000{col 56}{space 4} 1.024838{col 69}{space 3} 1.045134
+{txt}{space 10}male {c |}{col 16}{res}{space 2} 1.568988{col 28}{space 2} .3506168{col 39}{space 1}    2.02{col 48}{space 3}0.044{col 56}{space 4} 1.012522{col 69}{space 3}  2.43128
+{txt}{space 9}sbp_1 {c |}{col 16}{res}{space 2} .9987011{col 28}{space 2} .0002726{col 39}{space 1}   -4.76{col 48}{space 3}0.000{col 56}{space 4}  .998167{col 69}{space 3} .9992355
+{txt}{space 9}sbp_2 {c |}{col 16}{res}{space 2} 1.000243{col 28}{space 2} .0000511{col 39}{space 1}    4.75{col 48}{space 3}0.000{col 56}{space 4} 1.000143{col 69}{space 3} 1.000343
+{txt}{space 10}rr_1 {c |}{col 16}{res}{space 2} 5.27e+21{col 28}{space 2} 1.03e+23{col 39}{space 1}    2.55{col 48}{space 3}0.011{col 56}{space 4} 112366.6{col 69}{space 3} 2.48e+38
+{txt}{space 10}rr_2 {c |}{col 16}{res}{space 2} 3.01e-13{col 28}{space 2} 3.62e-12{col 39}{space 1}   -2.40{col 48}{space 3}0.016{col 56}{space 4} 1.75e-23{col 69}{space 3} .0051745
+{txt}{space 9}gcs_1 {c |}{col 16}{res}{space 2} .9990228{col 28}{space 2} .0000655{col 39}{space 1}  -14.91{col 48}{space 3}0.000{col 56}{space 4} .9988944{col 69}{space 3} .9991511
+{txt}{space 9}sbp_2 {c |}{col 16}{res}{space 2}        1{col 28}{txt}  (omitted)
+{space 10}rr_2 {c |}{col 16}{res}{space 2}        1{col 28}{txt}  (omitted)
+{space 14} {c |}
+c.sbp_2#c.rr_2 {c |}{col 16}{res}{space 2} .9999626{col 28}{space 2} .0000475{col 39}{space 1}   -0.79{col 48}{space 3}0.431{col 56}{space 4} .9998694{col 69}{space 3} 1.000056
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2} 58.89283{col 28}{space 2} 106.7519{col 39}{space 1}    2.25{col 48}{space 3}0.025{col 56}{space 4} 1.687078{col 69}{space 3} 2055.841
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:0.64}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.4233}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.sbp_2##c.gcs_1
+{txt}note: {bf:sbp_2} omitted because of collinearity.
+note: {bf:gcs_1} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:389.58}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-456.40747}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2991}
+
+{txt}{hline 16}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}           died{col 17}{c |} Odds ratio{col 29}   Std. err.{col 41}      z{col 49}   P>|z|{col 57}     [95% con{col 70}f. interval]
+{hline 16}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}age {c |}{col 17}{res}{space 2} 1.034171{col 29}{space 2} .0051698{col 40}{space 1}    6.72{col 49}{space 3}0.000{col 57}{space 4} 1.024088{col 70}{space 3} 1.044354
+{txt}{space 11}male {c |}{col 17}{res}{space 2} 1.540224{col 29}{space 2} .3457528{col 40}{space 1}    1.92{col 49}{space 3}0.054{col 57}{space 4}  .991983{col 70}{space 3} 2.391462
+{txt}{space 10}sbp_1 {c |}{col 17}{res}{space 2} .9987197{col 29}{space 2} .0002898{col 40}{space 1}   -4.42{col 49}{space 3}0.000{col 57}{space 4} .9981519{col 70}{space 3} .9992878
+{txt}{space 10}sbp_2 {c |}{col 17}{res}{space 2} 1.000236{col 29}{space 2} .0000533{col 40}{space 1}    4.42{col 49}{space 3}0.000{col 57}{space 4} 1.000131{col 70}{space 3} 1.000341
+{txt}{space 11}rr_1 {c |}{col 17}{res}{space 2} 2.01e+25{col 29}{space 2} 3.69e+26{col 40}{space 1}    3.17{col 49}{space 3}0.002{col 57}{space 4} 4.77e+09{col 70}{space 3} 8.48e+40
+{txt}{space 11}rr_2 {c |}{col 17}{res}{space 2} 5.02e-16{col 29}{space 2} 5.01e-15{col 40}{space 1}   -3.53{col 49}{space 3}0.000{col 57}{space 4} 1.63e-24{col 70}{space 3} 1.55e-07
+{txt}{space 10}gcs_1 {c |}{col 17}{res}{space 2} .9993207{col 29}{space 2}  .000132{col 40}{space 1}   -5.14{col 49}{space 3}0.000{col 57}{space 4}  .999062{col 70}{space 3} .9995796
+{txt}{space 10}sbp_2 {c |}{col 17}{res}{space 2}        1{col 29}{txt}  (omitted)
+{space 10}gcs_1 {c |}{col 17}{res}{space 2}        1{col 29}{txt}  (omitted)
+{space 15} {c |}
+c.sbp_2#c.gcs_1 {c |}{col 17}{res}{space 2}        1{col 29}{space 2} 1.35e-09{col 40}{space 1}   -2.49{col 49}{space 3}0.013{col 57}{space 4}        1{col 70}{space 3}        1
+{txt}{space 15} {c |}
+{space 10}_cons {c |}{col 17}{res}{space 2} 103.4529{col 29}{space 2} 143.3263{col 40}{space 1}    3.35{col 49}{space 3}0.001{col 57}{space 4} 6.846474{col 70}{space 3} 1563.214
+{txt}{hline 16}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:6.68}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.0097}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.rr_1##c.gcs_1
+{txt}note: {bf:rr_1} omitted because of collinearity.
+note: {bf:gcs_1} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:385.65}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-458.37291}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2961}
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          died{col 16}{c |} Odds ratio{col 28}   Std. err.{col 40}      z{col 48}   P>|z|{col 56}     [95% con{col 69}f. interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}age {c |}{col 16}{res}{space 2} 1.034519{col 28}{space 2}  .005164{col 39}{space 1}    6.80{col 48}{space 3}0.000{col 56}{space 4} 1.024447{col 69}{space 3}  1.04469
+{txt}{space 10}male {c |}{col 16}{res}{space 2} 1.549865{col 28}{space 2} .3465474{col 39}{space 1}    1.96{col 48}{space 3}0.050{col 56}{space 4} .9999225{col 69}{space 3} 2.402266
+{txt}{space 9}sbp_1 {c |}{col 16}{res}{space 2} .9987352{col 28}{space 2} .0002728{col 39}{space 1}   -4.63{col 48}{space 3}0.000{col 56}{space 4} .9982006{col 69}{space 3}   .99927
+{txt}{space 9}sbp_2 {c |}{col 16}{res}{space 2} 1.000228{col 28}{space 2}   .00005{col 39}{space 1}    4.56{col 48}{space 3}0.000{col 56}{space 4}  1.00013{col 69}{space 3} 1.000326
+{txt}{space 10}rr_1 {c |}{col 16}{res}{space 2} 5.00e+16{col 28}{space 2} 1.06e+18{col 39}{space 1}    1.80{col 48}{space 3}0.071{col 56}{space 4} .0367833{col 69}{space 3} 6.79e+34
+{txt}{space 10}rr_2 {c |}{col 16}{res}{space 2} 2.22e-10{col 28}{space 2} 2.76e-09{col 39}{space 1}   -1.79{col 48}{space 3}0.074{col 56}{space 4} 5.74e-21{col 69}{space 3}  8.56603
+{txt}{space 9}gcs_1 {c |}{col 16}{res}{space 2} .9994032{col 28}{space 2} .0002422{col 39}{space 1}   -2.46{col 48}{space 3}0.014{col 56}{space 4} .9989286{col 69}{space 3}  .999878
+{txt}{space 10}rr_1 {c |}{col 16}{res}{space 2}        1{col 28}{txt}  (omitted)
+{space 9}gcs_1 {c |}{col 16}{res}{space 2}        1{col 28}{txt}  (omitted)
+{space 14} {c |}
+c.rr_1#c.gcs_1 {c |}{col 16}{res}{space 2} .9925403{col 28}{space 2} .0046289{col 39}{space 1}   -1.61{col 48}{space 3}0.108{col 56}{space 4} .9835092{col 69}{space 3} 1.001654
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2} 22.97471{col 28}{space 2} 41.28593{col 39}{space 1}    1.74{col 48}{space 3}0.081{col 56}{space 4}   .67862{col 69}{space 3} 777.8097
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 1 success completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:2.75}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.0970}
+{txt}
+{com}. 
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.rr_2##c.gcs_1
+{txt}note: {bf:rr_2} omitted because of collinearity.
+note: {bf:gcs_1} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:8})}{col 70} = {res}{ralign 6:385.38}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-458.50711}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2959}
+
+{txt}{hline 15}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          died{col 16}{c |} Odds ratio{col 28}   Std. err.{col 40}      z{col 48}   P>|z|{col 56}     [95% con{col 69}f. interval]
+{hline 15}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 11}age {c |}{col 16}{res}{space 2} 1.034523{col 28}{space 2} .0051643{col 39}{space 1}    6.80{col 48}{space 3}0.000{col 56}{space 4} 1.024451{col 69}{space 3} 1.044695
+{txt}{space 10}male {c |}{col 16}{res}{space 2}  1.55185{col 28}{space 2} .3469212{col 39}{space 1}    1.97{col 48}{space 3}0.049{col 56}{space 4} 1.001292{col 69}{space 3}  2.40513
+{txt}{space 9}sbp_1 {c |}{col 16}{res}{space 2} .9987327{col 28}{space 2} .0002729{col 39}{space 1}   -4.64{col 48}{space 3}0.000{col 56}{space 4} .9981981{col 69}{space 3} .9992677
+{txt}{space 9}sbp_2 {c |}{col 16}{res}{space 2} 1.000229{col 28}{space 2} .0000501{col 39}{space 1}    4.57{col 48}{space 3}0.000{col 56}{space 4}  1.00013{col 69}{space 3} 1.000327
+{txt}{space 10}rr_1 {c |}{col 16}{res}{space 2} 2.88e+15{col 28}{space 2} 6.43e+16{col 39}{space 1}    1.60{col 48}{space 3}0.111{col 56}{space 4} .0002971{col 69}{space 3} 2.80e+34
+{txt}{space 10}rr_2 {c |}{col 16}{res}{space 2} 8.80e-10{col 28}{space 2} 1.15e-08{col 39}{space 1}   -1.59{col 48}{space 3}0.111{col 56}{space 4} 6.34e-21{col 69}{space 3}  122.102
+{txt}{space 9}gcs_1 {c |}{col 16}{res}{space 2} .9997144{col 28}{space 2} .0004468{col 39}{space 1}   -0.64{col 48}{space 3}0.523{col 56}{space 4}  .998839{col 69}{space 3} 1.000591
+{txt}{space 10}rr_2 {c |}{col 16}{res}{space 2}        1{col 28}{txt}  (omitted)
+{space 9}gcs_1 {c |}{col 16}{res}{space 2}        1{col 28}{txt}  (omitted)
+{space 14} {c |}
+c.rr_2#c.gcs_1 {c |}{col 16}{res}{space 2} .9969121{col 28}{space 2} .0019837{col 39}{space 1}   -1.55{col 48}{space 3}0.120{col 56}{space 4} .9930316{col 69}{space 3} 1.000808
+{txt}{space 14} {c |}
+{space 9}_cons {c |}{col 16}{res}{space 2} 19.64507{col 28}{space 2} 37.08629{col 39}{space 1}    1.58{col 48}{space 3}0.115{col 56}{space 4} .4856694{col 69}{space 3} 794.6324
+{txt}{hline 15}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 1 success completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:2.49}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.1149}
+{txt}
+{com}. 
+. * Now include significant interactions
+. logistic died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.sbp_1##c.gcs_1 c.sbp_2##c.gcs_1
+{txt}note: {bf:sbp_1} omitted because of collinearity.
+note: {bf:gcs_1} omitted because of collinearity.
+note: {bf:sbp_2} omitted because of collinearity.
+note: {bf:gcs_1} omitted because of collinearity.
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:9})}{col 70} = {res}{ralign 6:390.15}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-456.12528}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2996}
+
+{txt}{hline 16}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}           died{col 17}{c |} Odds ratio{col 29}   Std. err.{col 41}      z{col 49}   P>|z|{col 57}     [95% con{col 70}f. interval]
+{hline 16}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}age {c |}{col 17}{res}{space 2} 1.034389{col 29}{space 2} .0051786{col 40}{space 1}    6.75{col 49}{space 3}0.000{col 57}{space 4} 1.024289{col 70}{space 3} 1.044589
+{txt}{space 11}male {c |}{col 17}{res}{space 2}  1.53942{col 29}{space 2} .3458827{col 40}{space 1}    1.92{col 49}{space 3}0.055{col 57}{space 4} .9910736{col 70}{space 3} 2.391158
+{txt}{space 10}sbp_1 {c |}{col 17}{res}{space 2} .9984509{col 29}{space 2}  .000469{col 40}{space 1}   -3.30{col 49}{space 3}0.001{col 57}{space 4} .9975322{col 70}{space 3} .9993706
+{txt}{space 10}sbp_2 {c |}{col 17}{res}{space 2} 1.000285{col 29}{space 2} .0000864{col 40}{space 1}    3.30{col 49}{space 3}0.001{col 57}{space 4} 1.000116{col 70}{space 3} 1.000455
+{txt}{space 11}rr_1 {c |}{col 17}{res}{space 2} 2.67e+25{col 29}{space 2} 4.90e+26{col 40}{space 1}    3.19{col 49}{space 3}0.001{col 57}{space 4} 6.16e+09{col 70}{space 3} 1.15e+41
+{txt}{space 11}rr_2 {c |}{col 17}{res}{space 2} 3.54e-16{col 29}{space 2} 3.53e-15{col 40}{space 1}   -3.57{col 49}{space 3}0.000{col 57}{space 4} 1.14e-24{col 70}{space 3} 1.10e-07
+{txt}{space 10}gcs_1 {c |}{col 17}{res}{space 2} .9990605{col 29}{space 2} .0003747{col 40}{space 1}   -2.51{col 49}{space 3}0.012{col 57}{space 4} .9983264{col 70}{space 3}  .999795
+{txt}{space 10}sbp_1 {c |}{col 17}{res}{space 2}        1{col 29}{txt}  (omitted)
+{space 10}gcs_1 {c |}{col 17}{res}{space 2}        1{col 29}{txt}  (omitted)
+{space 15} {c |}
+c.sbp_1#c.gcs_1 {c |}{col 17}{res}{space 2}        1{col 29}{space 2} 2.27e-07{col 40}{space 1}    0.74{col 49}{space 3}0.460{col 57}{space 4} .9999997{col 70}{space 3} 1.000001
+{txt}{space 15} {c |}
+{space 10}sbp_2 {c |}{col 17}{res}{space 2}        1{col 29}{txt}  (omitted)
+{space 10}gcs_1 {c |}{col 17}{res}{space 2}        1{col 29}{txt}  (omitted)
+{space 15} {c |}
+c.sbp_2#c.gcs_1 {c |}{col 17}{res}{space 2}        1{col 29}{space 2} 4.18e-08{col 40}{space 1}   -0.82{col 49}{space 3}0.413{col 57}{space 4} .9999999{col 70}{space 3}        1
+{txt}{space 15} {c |}
+{space 10}_cons {c |}{col 17}{res}{space 2} 166.6928{col 29}{space 2} 254.7627{col 40}{space 1}    3.35{col 49}{space 3}0.001{col 57}{space 4} 8.336705{col 70}{space 3}  3333.03
+{txt}{hline 16}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: {bf:_cons} estimates baseline odds{txt}.{p_end}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:2})} = {res}{ralign 6:7.25}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.0267}
+{txt}
+{com}. 
+. * 3. Test of Goodnees of Fit
+. * Pearson goodness-of-fit test
+. estat gof
+
+{txt}Goodness-of-fit test after logistic model
+Variable: {res}died
+
+{txt}{ralign 28:Number of observations} = {res}{ralign 7:2,789}
+{txt}{ralign 28:Number of covariate patterns} = {res}{ralign 7:2,751}
+{txt}{ralign 28:Pearson chi2({res:2741})} = {res}{ralign 7:2156.69}
+{txt}{ralign 28:Prob > chi2} = {res}{ralign 7:1.0000}
+{txt}
+{com}. * Hosmer–Lemeshow
+. estat gof, group(10) table
+{txt}{p 0 6 2}note: obs collapsed on 10 quantiles of estimated probabilities.
+
+Goodness-of-fit test after logistic model
+Variable: {res}died
+
+{txt}  Table collapsed on quantiles of estimated probabilities
+  {c TLC}{hline 7}{c TT}{hline 8}{c TT}{hline 7}{c TT}{hline 7}{c TT}{hline 7}{c TT}{hline 7}{c TT}{hline 7}{c TRC}
+  {c |} {res}Group {txt}{c |} {res}  Prob {txt}{c |} {res}Obs_1 {txt}{c |} {res}Exp_1 {txt}{c |} {res}Obs_0 {txt}{c |} {res}Exp_0 {txt}{c |} {res}Total {txt}{c |}
+  {c LT}{hline 7}{c +}{hline 8}{c +}{hline 7}{c +}{hline 7}{c +}{hline 7}{c +}{hline 7}{c +}{hline 7}{c RT}
+  {c |} {res}    1 {txt}{c |} {res}0.0081 {txt}{c |} {res}    0 {txt}{c |} {res}  1.8 {txt}{c |} {res}  279 {txt}{c |} {res}277.2 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}    2 {txt}{c |} {res}0.0104 {txt}{c |} {res}    0 {txt}{c |} {res}  2.6 {txt}{c |} {res}  279 {txt}{c |} {res}276.4 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}    3 {txt}{c |} {res}0.0129 {txt}{c |} {res}    1 {txt}{c |} {res}  3.3 {txt}{c |} {res}  278 {txt}{c |} {res}275.7 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}    4 {txt}{c |} {res}0.0157 {txt}{c |} {res}    1 {txt}{c |} {res}  4.0 {txt}{c |} {res}  278 {txt}{c |} {res}275.0 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}    5 {txt}{c |} {res}0.0198 {txt}{c |} {res}    6 {txt}{c |} {res}  4.9 {txt}{c |} {res}  273 {txt}{c |} {res}274.1 {txt}{c |} {res}  279 {txt}{c |}
+  {c LT}{hline 7}{c +}{hline 8}{c +}{hline 7}{c +}{hline 7}{c +}{hline 7}{c +}{hline 7}{c +}{hline 7}{c RT}
+  {c |} {res}    6 {txt}{c |} {res}0.0246 {txt}{c |} {res}    6 {txt}{c |} {res}  6.1 {txt}{c |} {res}  273 {txt}{c |} {res}272.9 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}    7 {txt}{c |} {res}0.0343 {txt}{c |} {res}   15 {txt}{c |} {res}  8.0 {txt}{c |} {res}  264 {txt}{c |} {res}271.0 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}    8 {txt}{c |} {res}0.0577 {txt}{c |} {res}   10 {txt}{c |} {res} 12.3 {txt}{c |} {res}  269 {txt}{c |} {res}266.7 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}    9 {txt}{c |} {res}0.1706 {txt}{c |} {res}   36 {txt}{c |} {res} 27.2 {txt}{c |} {res}  243 {txt}{c |} {res}251.8 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}   10 {txt}{c |} {res}1.0000 {txt}{c |} {res}   99 {txt}{c |} {res}103.9 {txt}{c |} {res}  179 {txt}{c |} {res}174.1 {txt}{c |} {res}  278 {txt}{c |}
+  {c BLC}{hline 7}{c BT}{hline 8}{c BT}{hline 7}{c BT}{hline 7}{c BT}{hline 7}{c BT}{hline 7}{c BT}{hline 7}{c BRC}
+
+{ralign 23:Number of observations} = {res}{ralign 6:2,789}
+{txt}{ralign 23:Number of groups} = {res}{ralign 6:10}
+{txt}{ralign 23:Hosmer–Lemeshow chi2({res:8})} = {res}{ralign 6:18.70}
+{txt}{ralign 23:Prob > chi2} = {res}{ralign 6:0.0165}
+{txt}
+{com}. 
+. * 4. Model Diagnostics
+. * Compute predicted probabilities
+. logit died age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.sbp_1##c.gcs_1 c.sbp_2##c.gcs_1
+
+{txt}note: {bf:sbp_1} omitted because of collinearity.
+note: {bf:gcs_1} omitted because of collinearity.
+note: {bf:sbp_2} omitted because of collinearity.
+note: {bf:gcs_1} omitted because of collinearity.
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-493.94518}  
+Iteration 2:{space 3}log likelihood = {res:-460.59066}  
+Iteration 3:{space 3}log likelihood = {res:-456.18115}  
+Iteration 4:{space 3}log likelihood = {res: -456.1253}  
+Iteration 5:{space 3}log likelihood = {res:-456.12528}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:9})}{col 70} = {res}{ralign 6:390.15}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-456.12528}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2996}
+
+{txt}{hline 16}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}           died{col 17}{c |} Coefficient{col 29}  Std. err.{col 41}      z{col 49}   P>|z|{col 57}     [95% con{col 70}f. interval]
+{hline 16}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 12}age {c |}{col 17}{res}{space 2} .0338112{col 29}{space 2} .0050064{col 40}{space 1}    6.75{col 49}{space 3}0.000{col 57}{space 4} .0239988{col 70}{space 3} .0436236
+{txt}{space 11}male {c |}{col 17}{res}{space 2} .4314056{col 29}{space 2} .2246838{col 40}{space 1}    1.92{col 49}{space 3}0.055{col 57}{space 4}-.0089665{col 70}{space 3} .8717778
+{txt}{space 10}sbp_1 {c |}{col 17}{res}{space 2}-.0015503{col 29}{space 2} .0004697{col 40}{space 1}   -3.30{col 49}{space 3}0.001{col 57}{space 4}-.0024709{col 70}{space 3}-.0006296
+{txt}{space 10}sbp_2 {c |}{col 17}{res}{space 2} .0002854{col 29}{space 2} .0000864{col 40}{space 1}    3.30{col 49}{space 3}0.001{col 57}{space 4} .0001161{col 70}{space 3} .0004548
+{txt}{space 11}rr_1 {c |}{col 17}{res}{space 2} 58.54555{col 29}{space 2} 18.36991{col 40}{space 1}    3.19{col 49}{space 3}0.001{col 57}{space 4} 22.54119{col 70}{space 3} 94.54991
+{txt}{space 11}rr_2 {c |}{col 17}{res}{space 2} -35.5785{col 29}{space 2} 9.976446{col 40}{space 1}   -3.57{col 49}{space 3}0.000{col 57}{space 4}-55.13197{col 70}{space 3}-16.02503
+{txt}{space 10}gcs_1 {c |}{col 17}{res}{space 2}  -.00094{col 29}{space 2}  .000375{col 40}{space 1}   -2.51{col 49}{space 3}0.012{col 57}{space 4} -.001675{col 70}{space 3} -.000205
+{txt}{space 10}sbp_1 {c |}{col 17}{res}{space 2}        0{col 29}{txt}  (omitted)
+{space 10}gcs_1 {c |}{col 17}{res}{space 2}        0{col 29}{txt}  (omitted)
+{space 15} {c |}
+c.sbp_1#c.gcs_1 {c |}{col 17}{res}{space 2} 1.68e-07{col 29}{space 2} 2.27e-07{col 40}{space 1}    0.74{col 49}{space 3}0.460{col 57}{space 4}-2.77e-07{col 70}{space 3} 6.12e-07
+{txt}{space 15} {c |}
+{space 10}sbp_2 {c |}{col 17}{res}{space 2}        0{col 29}{txt}  (omitted)
+{space 10}gcs_1 {c |}{col 17}{res}{space 2}        0{col 29}{txt}  (omitted)
+{space 15} {c |}
+c.sbp_2#c.gcs_1 {c |}{col 17}{res}{space 2}-3.42e-08{col 29}{space 2} 4.18e-08{col 40}{space 1}   -0.82{col 49}{space 3}0.413{col 57}{space 4}-1.16e-07{col 70}{space 3} 4.78e-08
+{txt}{space 15} {c |}
+{space 10}_cons {c |}{col 17}{res}{space 2} 5.116153{col 29}{space 2} 1.528336{col 40}{space 1}    3.35{col 49}{space 3}0.001{col 57}{space 4} 2.120668{col 70}{space 3} 8.111637
+{txt}{hline 16}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. predict prob
+{txt}(option {bf:pr} assumed; Pr(died))
+
+{com}. * Diagnostic statistics (delta chi-square, delta deviance, delta beta)
+. predict delta_x2, dx2
+{txt}
+{com}. predict delta_dev, ddeviance
+{txt}
+{com}. predict dbeta, dbeta
+{txt}
+{com}. 
+. * plot Delta chi-square vs. predicted probabilities
+. scatter prob delta_x2
+{res}{txt}
+{com}. 
+. * plot delta deviance vs. predicted probabilities 
+. scatter delta_dev prob
+{res}{txt}
+{com}. 
+. * plot delta beta vs. predicted probabilities
+. scatter dbeta prob
+{res}{txt}
+{com}. 
+. * plot with symbol size proportional to delta beta
+. twoway (scatter delta_x2 prob [aweight=dbeta], msymbol(circle_hollow))
+{res}{txt}
+{com}. 
+. * Identify covariate patterns with higher values of delta chi- square and delta beta
+. list age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 if delta_x2 > 10
+{txt}
+      {c TLC}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c TRC}
+      {c |} {res}age   male   sbp_1       sbp_2        rr_1        rr_2   gcs_1 {txt}{c |}
+      {c LT}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c RT}
+1385. {c |} {res} 44      1   12321   58026.122   .05555556   .23570226    3375 {txt}{c |}
+2624. {c |} {res} 23      1   28224   144618.76   .03225806    .1796053    2197 {txt}{c |}
+2626. {c |} {res} 25      1   13225   62751.727   .02173913   .14744196    2744 {txt}{c |}
+2630. {c |} {res} 21      1   25600   129924.45   .01111111   .10540926    2744 {txt}{c |}
+2631. {c |} {res} 36      1   22801      114399   .03333333   .18257419    2197 {txt}{c |}
+      {c LT}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c RT}
+2649. {c |} {res} 48      0   15876   76780.812   .05555556   .23570226    2744 {txt}{c |}
+2652. {c |} {res} 52      1   20449   101485.21   .05882353   .24253563    3375 {txt}{c |}
+2656. {c |} {res} 27      1   10609    49169.84   .04166667   .20412415    3375 {txt}{c |}
+2657. {c |} {res} 31      1   15129   72803.537   .04545455   .21320072    2744 {txt}{c |}
+2658. {c |} {res} 22      1   30625   158171.57   .05263158   .22941573    2744 {txt}{c |}
+      {c LT}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c RT}
+2660. {c |} {res} 39      1   10201   47078.844   .04545455   .21320072    3375 {txt}{c |}
+2664. {c |} {res} 35      1   16641   80872.138   .04166667   .20412415    3375 {txt}{c |}
+2665. {c |} {res} 22      1   13924   66427.013   .04761905   .21821789    3375 {txt}{c |}
+2666. {c |} {res} 33      1   11664   54612.379         .04          .2    2744 {txt}{c |}
+2670. {c |} {res} 45      0   12100   56875.812   .04166667   .20412415    3375 {txt}{c |}
+      {c LT}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c RT}
+2676. {c |} {res} 43      1   10000   46051.702   .04166667   .20412415    2744 {txt}{c |}
+2679. {c |} {res} 52      1   19321   95338.971   .05555556   .23570226    2744 {txt}{c |}
+2682. {c |} {res} 23      1   11236   52398.402   .04166667   .20412415    3375 {txt}{c |}
+2685. {c |} {res} 20      1    9801    45036.77   .04166667   .20412415    3375 {txt}{c |}
+2688. {c |} {res} 52      1   10404   48118.217   .04347826   .20851441    3375 {txt}{c |}
+      {c LT}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c RT}
+2689. {c |} {res} 22      1   12321   58026.122   .04166667   .20412415    3375 {txt}{c |}
+2690. {c |} {res} 41      1   14400   68939.881   .08333333   .28867513    3375 {txt}{c |}
+2691. {c |} {res} 46      1   12100   56875.812   .03571429   .18898224    2744 {txt}{c |}
+2693. {c |} {res} 54      1    9025   41098.739         .04          .2    3375 {txt}{c |}
+2695. {c |} {res} 44      1   15129   72803.537   .04347826   .20851441    3375 {txt}{c |}
+      {c LT}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c RT}
+2696. {c |} {res} 33      1   10404   48118.217   .05555556   .23570226    3375 {txt}{c |}
+2700. {c |} {res} 38      1   23716   119456.37       .0625         .25    2744 {txt}{c |}
+2701. {c |} {res} 32      1    9025   41098.739   .04545455   .21320072    3375 {txt}{c |}
+2702. {c |} {res} 53      1   14400   68939.881       .0625         .25    3375 {txt}{c |}
+2704. {c |} {res} 46      1   10816   50233.732   .07142857   .26726124    3375 {txt}{c |}
+      {c LT}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c RT}
+2705. {c |} {res} 38      1   16900   82261.332         .05    .2236068    3375 {txt}{c |}
+2707. {c |} {res} 50      1   20736   103054.05         .05    .2236068    3375 {txt}{c |}
+2708. {c |} {res} 53      1   16900   82261.332         .04          .2    3375 {txt}{c |}
+2709. {c |} {res} 47      0   25921   131715.08         .04          .2    2744 {txt}{c |}
+2710. {c |} {res} 44      1   12321   58026.122   .05555556   .23570226    3375 {txt}{c |}
+      {c LT}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c RT}
+2716. {c |} {res} 29      1    9801    45036.77   .04545455   .21320072    2744 {txt}{c |}
+2724. {c |} {res} 70      0   21025   104635.83   .02777778   .16666667    3375 {txt}{c |}
+2727. {c |} {res} 56      1   29241   150347.38   .03225806    .1796053    3375 {txt}{c |}
+2737. {c |} {res} 59      1    6561   28831.981       .0625         .25    3375 {txt}{c |}
+2739. {c |} {res} 77      1   35721   187240.45         .05    .2236068    2744 {txt}{c |}
+      {c LT}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c RT}
+2741. {c |} {res} 88      0   26569   135335.85   .05555556   .23570226    2744 {txt}{c |}
+2742. {c |} {res} 76      1   11664   54612.379   .05263158   .22941573    3375 {txt}{c |}
+2755. {c |} {res} 61      1   28900   148424.57   .07142857   .26726124    2744 {txt}{c |}
+2757. {c |} {res} 81      0   17424   85077.941   .05882353   .24253563    3375 {txt}{c |}
+2766. {c |} {res} 84      0   25921   131715.08   .04545455   .21320072    2744 {txt}{c |}
+      {c LT}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c RT}
+2769. {c |} {res} 85      1   26896   137166.01   .05555556   .23570226    2744 {txt}{c |}
+2774. {c |} {res} 59      0   13924   66427.013         .04          .2    3375 {txt}{c |}
+2775. {c |} {res} 71      1   12996   61551.635   .05263158   .22941573    3375 {txt}{c |}
+2776. {c |} {res} 85      0   14400   68939.881   .04347826   .20851441    3375 {txt}{c |}
+2777. {c |} {res} 59      0   26244   133518.88         .05    .2236068    2744 {txt}{c |}
+      {c LT}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c RT}
+2778. {c |} {res} 62      1   23104   116071.74       .0625         .25    3375 {txt}{c |}
+2779. {c |} {res} 61      1   23716   119456.37   .04166667   .20412415    3375 {txt}{c |}
+2782. {c |} {res} 61      1   14400   68939.881   .04347826   .20851441    2744 {txt}{c |}
+2784. {c |} {res} 84      0   26896   137166.01   .06666667   .25819889    2197 {txt}{c |}
+2788. {c |} {res} 60      0   12100   56875.812   .07142857   .26726124    3375 {txt}{c |}
+      {c LT}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c RT}
+2789. {c |} {res} 59      1   27889   142735.73         .04          .2    3375 {txt}{c |}
+      {c BLC}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c BRC}
+
+{com}. list age male sbp_1 sbp_2 rr_1 rr_2 gcs_1 if dbeta > .3
+{txt}
+      {c TLC}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c TRC}
+      {c |} {res}age   male   sbp_1       sbp_2        rr_1        rr_2   gcs_1 {txt}{c |}
+      {c LT}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c RT}
+   1. {c |} {res} 27      0    9801    45036.77         .25          .5     343 {txt}{c |}
+1133. {c |} {res} 52      0   48400   261051.57         .05    .2236068      27 {txt}{c |}
+2094. {c |} {res} 92      0     289   818.79866   .01639344   .12803688    3375 {txt}{c |}
+      {c BLC}{hline 5}{c -}{hline 6}{c -}{hline 7}{c -}{hline 11}{c -}{hline 11}{c -}{hline 11}{c -}{hline 7}{c BRC}
+
+{com}. 
+. * re-fit model as needed and refun model GOF and Diagnostics
+. * recode age as categorical
+. recode age 0/35 = 1 36/55 = 2 56/max = 3, generate(age_cat)
+{txt}(2789 differences between {bf:age} and {bf:age_cat})
+
+{com}. 
+. * re-rn GOF tests
+. logit died i.age_cat male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.sbp##c.gcs
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-497.44833}  
+Iteration 2:{space 3}log likelihood = {res:-461.07986}  
+Iteration 3:{space 3}log likelihood = {res:-459.31854}  
+Iteration 4:{space 3}log likelihood = {res:-459.31649}  
+Iteration 5:{space 3}log likelihood = {res:-459.31649}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:11})}{col 70} = {res}{ralign 6:383.76}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.31649}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2947}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}age_cat {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .3217193{col 26}{space 2} .2318683{col 37}{space 1}    1.39{col 46}{space 3}0.165{col 54}{space 4}-.1327343{col 67}{space 3} .7761729
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} 1.460684{col 26}{space 2} .2288171{col 37}{space 1}    6.38{col 46}{space 3}0.000{col 54}{space 4} 1.012211{col 67}{space 3} 1.909158
+{txt}{space 12} {c |}
+{space 8}male {c |}{col 14}{res}{space 2} .4381969{col 26}{space 2} .2244757{col 37}{space 1}    1.95{col 46}{space 3}0.051{col 54}{space 4}-.0017674{col 67}{space 3} .8781611
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2} -.001748{col 26}{space 2} .0013787{col 37}{space 1}   -1.27{col 46}{space 3}0.205{col 54}{space 4}-.0044502{col 67}{space 3} .0009541
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2} .0003064{col 26}{space 2}  .000219{col 37}{space 1}    1.40{col 46}{space 3}0.162{col 54}{space 4}-.0001228{col 67}{space 3} .0007356
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 58.02445{col 26}{space 2} 18.32304{col 37}{space 1}    3.17{col 46}{space 3}0.002{col 54}{space 4} 22.11195{col 67}{space 3} 93.93695
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2} -36.0507{col 26}{space 2} 9.991092{col 37}{space 1}   -3.61{col 46}{space 3}0.000{col 54}{space 4}-55.63289{col 67}{space 3}-16.46852
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2}-.0006279{col 26}{space 2} .0002443{col 37}{space 1}   -2.57{col 46}{space 3}0.010{col 54}{space 4}-.0011067{col 67}{space 3}-.0001492
+{txt}{space 9}sbp {c |}{col 14}{res}{space 2} .0239446{col 26}{space 2} .0523242{col 37}{space 1}    0.46{col 46}{space 3}0.647{col 54}{space 4}-.0786088{col 67}{space 3} .1264981
+{txt}{space 9}gcs {c |}{col 14}{res}{space 2} .0115729{col 26}{space 2}   .09828{col 37}{space 1}    0.12{col 46}{space 3}0.906{col 54}{space 4}-.1810523{col 67}{space 3} .2041982
+{txt}{space 12} {c |}
+{space 1}c.sbp#c.gcs {c |}{col 14}{res}{space 2}-.0008966{col 26}{space 2} .0005214{col 37}{space 1}   -1.72{col 46}{space 3}0.086{col 54}{space 4}-.0019185{col 67}{space 3} .0001254
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 5.276535{col 26}{space 2} 2.125893{col 37}{space 1}    2.48{col 46}{space 3}0.013{col 54}{space 4} 1.109861{col 67}{space 3} 9.443208
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. estat gof
+
+{txt}Goodness-of-fit test after logistic model
+Variable: {res}died
+
+{txt}{ralign 28:Number of observations} = {res}{ralign 7:2,789}
+{txt}{ralign 28:Number of covariate patterns} = {res}{ralign 7:2,300}
+{txt}{ralign 28:Pearson chi2({res:2288})} = {res}{ralign 7:2120.13}
+{txt}{ralign 28:Prob > chi2} = {res}{ralign 7:0.9944}
+{txt}
+{com}. estat gof, group(10) table
+{txt}{p 0 6 2}note: obs collapsed on 10 quantiles of estimated probabilities.
+
+Goodness-of-fit test after logistic model
+Variable: {res}died
+
+{txt}  Table collapsed on quantiles of estimated probabilities
+  {c TLC}{hline 7}{c TT}{hline 8}{c TT}{hline 7}{c TT}{hline 7}{c TT}{hline 7}{c TT}{hline 7}{c TT}{hline 7}{c TRC}
+  {c |} {res}Group {txt}{c |} {res}  Prob {txt}{c |} {res}Obs_1 {txt}{c |} {res}Exp_1 {txt}{c |} {res}Obs_0 {txt}{c |} {res}Exp_0 {txt}{c |} {res}Total {txt}{c |}
+  {c LT}{hline 7}{c +}{hline 8}{c +}{hline 7}{c +}{hline 7}{c +}{hline 7}{c +}{hline 7}{c +}{hline 7}{c RT}
+  {c |} {res}    1 {txt}{c |} {res}0.0091 {txt}{c |} {res}    0 {txt}{c |} {res}  2.2 {txt}{c |} {res}  279 {txt}{c |} {res}276.8 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}    2 {txt}{c |} {res}0.0109 {txt}{c |} {res}    0 {txt}{c |} {res}  2.8 {txt}{c |} {res}  279 {txt}{c |} {res}276.2 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}    3 {txt}{c |} {res}0.0128 {txt}{c |} {res}    1 {txt}{c |} {res}  3.3 {txt}{c |} {res}  278 {txt}{c |} {res}275.7 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}    4 {txt}{c |} {res}0.0152 {txt}{c |} {res}    2 {txt}{c |} {res}  3.9 {txt}{c |} {res}  277 {txt}{c |} {res}275.1 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}    5 {txt}{c |} {res}0.0187 {txt}{c |} {res}    8 {txt}{c |} {res}  4.7 {txt}{c |} {res}  271 {txt}{c |} {res}274.3 {txt}{c |} {res}  279 {txt}{c |}
+  {c LT}{hline 7}{c +}{hline 8}{c +}{hline 7}{c +}{hline 7}{c +}{hline 7}{c +}{hline 7}{c +}{hline 7}{c RT}
+  {c |} {res}    6 {txt}{c |} {res}0.0261 {txt}{c |} {res}   10 {txt}{c |} {res}  6.2 {txt}{c |} {res}  269 {txt}{c |} {res}272.8 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}    7 {txt}{c |} {res}0.0373 {txt}{c |} {res}    8 {txt}{c |} {res}  8.8 {txt}{c |} {res}  271 {txt}{c |} {res}270.2 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}    8 {txt}{c |} {res}0.0550 {txt}{c |} {res}   13 {txt}{c |} {res} 12.7 {txt}{c |} {res}  266 {txt}{c |} {res}266.3 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}    9 {txt}{c |} {res}0.1699 {txt}{c |} {res}   28 {txt}{c |} {res} 26.0 {txt}{c |} {res}  251 {txt}{c |} {res}253.0 {txt}{c |} {res}  279 {txt}{c |}
+  {c |} {res}   10 {txt}{c |} {res}1.0000 {txt}{c |} {res}  104 {txt}{c |} {res}103.5 {txt}{c |} {res}  174 {txt}{c |} {res}174.5 {txt}{c |} {res}  278 {txt}{c |}
+  {c BLC}{hline 7}{c BT}{hline 8}{c BT}{hline 7}{c BT}{hline 7}{c BT}{hline 7}{c BT}{hline 7}{c BT}{hline 7}{c BRC}
+
+{ralign 23:Number of observations} = {res}{ralign 6:2,789}
+{txt}{ralign 23:Number of groups} = {res}{ralign 6:10}
+{txt}{ralign 23:Hosmer–Lemeshow chi2({res:8})} = {res}{ralign 6:12.72}
+{txt}{ralign 23:Prob > chi2} = {res}{ralign 6:0.1217}
+{txt}
+{com}. 
+. * 5. produce final model
+. asdoc logit died i.age_cat male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.sbp##c.gcs
+{txt}(File Myfile.doc already exists, option {bf:append} was assumed)
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-497.44833}  
+Iteration 2:{space 3}log likelihood = {res:-461.07986}  
+Iteration 3:{space 3}log likelihood = {res:-459.31854}  
+Iteration 4:{space 3}log likelihood = {res:-459.31649}  
+Iteration 5:{space 3}log likelihood = {res:-459.31649}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:11})}{col 70} = {res}{ralign 6:383.76}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.31649}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2947}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}age_cat {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .3217193{col 26}{space 2} .2318683{col 37}{space 1}    1.39{col 46}{space 3}0.165{col 54}{space 4}-.1327343{col 67}{space 3} .7761729
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} 1.460684{col 26}{space 2} .2288171{col 37}{space 1}    6.38{col 46}{space 3}0.000{col 54}{space 4} 1.012211{col 67}{space 3} 1.909158
+{txt}{space 12} {c |}
+{space 8}male {c |}{col 14}{res}{space 2} .4381969{col 26}{space 2} .2244757{col 37}{space 1}    1.95{col 46}{space 3}0.051{col 54}{space 4}-.0017674{col 67}{space 3} .8781611
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2} -.001748{col 26}{space 2} .0013787{col 37}{space 1}   -1.27{col 46}{space 3}0.205{col 54}{space 4}-.0044502{col 67}{space 3} .0009541
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2} .0003064{col 26}{space 2}  .000219{col 37}{space 1}    1.40{col 46}{space 3}0.162{col 54}{space 4}-.0001228{col 67}{space 3} .0007356
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 58.02445{col 26}{space 2} 18.32304{col 37}{space 1}    3.17{col 46}{space 3}0.002{col 54}{space 4} 22.11195{col 67}{space 3} 93.93695
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2} -36.0507{col 26}{space 2} 9.991092{col 37}{space 1}   -3.61{col 46}{space 3}0.000{col 54}{space 4}-55.63289{col 67}{space 3}-16.46852
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2}-.0006279{col 26}{space 2} .0002443{col 37}{space 1}   -2.57{col 46}{space 3}0.010{col 54}{space 4}-.0011067{col 67}{space 3}-.0001492
+{txt}{space 9}sbp {c |}{col 14}{res}{space 2} .0239446{col 26}{space 2} .0523242{col 37}{space 1}    0.46{col 46}{space 3}0.647{col 54}{space 4}-.0786088{col 67}{space 3} .1264981
+{txt}{space 9}gcs {c |}{col 14}{res}{space 2} .0115729{col 26}{space 2}   .09828{col 37}{space 1}    0.12{col 46}{space 3}0.906{col 54}{space 4}-.1810523{col 67}{space 3} .2041982
+{txt}{space 12} {c |}
+{space 1}c.sbp#c.gcs {c |}{col 14}{res}{space 2}-.0008966{col 26}{space 2} .0005214{col 37}{space 1}   -1.72{col 46}{space 3}0.086{col 54}{space 4}-.0019185{col 67}{space 3} .0001254
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 5.276535{col 26}{space 2} 2.125893{col 37}{space 1}    2.48{col 46}{space 3}0.013{col 54}{space 4} 1.109861{col 67}{space 3} 9.443208
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+{res}Click to Open File:  {browse "Myfile.doc"}
+{txt}
+{com}. 
+. * 7. ROC curve, AROC (95% CI) and classification table
+. lroc, title("Prediction Model")
+{res}
+{txt}Logistic model for died
+
+Number of observations = {res}    2789
+{txt}Area under ROC curve   = {res}  0.8798
+{txt}
+{com}. predict xbpred, xb
+{txt}
+{com}. roctab died xbpred, summary
+{res}
+{txt}{col 23}ROC{col 32}{col 46}{space 1}Asymptotic normal{space 2}
+           Obs       area     Std. err.      [95% conf. interval]
+     {hline 60}
+{col 5}{res}     2,789{col 18}  0.8798{col 31}  0.0125{col 46} 0.85528{col 58} 0.90433
+{txt}
+{com}. estat classification
+
+{txt}Logistic model for died
+
+{col 15}{hline 8} True {hline 8}
+Classified {c |}{col 22}D{col 35}~D  {c |}{col 46}Total
+{hline 11}{c +}{hline 26}{c +}{hline 11}
+{col 6}+{col 12}{c |} {res}       37{col 28}       26{txt}  {c |}  {res}       63
+{txt}{col 6}-{col 12}{c |} {res}      137{col 28}     2589{txt}  {c |}  {res}     2726
+{txt}{hline 11}{c +}{hline 26}{c +}{hline 11}
+   Total   {c |} {res}      174{col 28}     2615{txt}  {c |}  {res}     2789
+
+{txt}Classified + if predicted Pr(D) >= .5
+True D defined as died != 0
+{hline 50}
+Sensitivity                     Pr( +| D){res}   21.26%
+{txt}Specificity                     Pr( -|~D){res}   99.01%
+{txt}Positive predictive value       Pr( D| +){res}   58.73%
+{txt}Negative predictive value       Pr(~D| -){res}   94.97%
+{txt}{hline 50}
+False + rate for true ~D        Pr( +|~D){res}    0.99%
+{txt}False - rate for true D         Pr( -| D){res}   78.74%
+{txt}False + rate for classified +   Pr(~D| +){res}   41.27%
+{txt}False - rate for classified -   Pr( D| -){res}    5.03%
+{txt}{hline 50}
+Correctly classified                     {res}   94.16%
+{txt}{hline 50}
+
+{com}. 
+. * 8. Evaluate usefulness of model in validation sample
+. use "/Users/haotianxian/Documents/511B/project/new/project_fall2021.dta", clear
+{txt}
+{com}. recode age 0/35 = 1 36/55 = 2 56/max = 3, generate(age_cat)
+{txt}(3464 differences between {bf:age} and {bf:age_cat})
+
+{com}. gen sbp_1 = (sbp)^2
+{txt}
+{com}. gen sbp_2 = ((sbp)^2)*ln(sbp)
+{txt}
+{com}. gen rr_1 = 1/(rr)
+{txt}
+{com}. gen rr_2 = 1/(sqrt(rr))
+{txt}
+{com}. gen gcs_1 = gcs^3
+{txt}
+{com}. 
+. * generate logit regression on estimation sample
+. logit died i.age_cat male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.sbp##c.gcs if val==0
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-497.44832}  
+Iteration 2:{space 3}log likelihood = {res:-461.07985}  
+Iteration 3:{space 3}log likelihood = {res:-459.31853}  
+Iteration 4:{space 3}log likelihood = {res:-459.31648}  
+Iteration 5:{space 3}log likelihood = {res:-459.31648}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:11})}{col 70} = {res}{ralign 6:383.76}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.31648}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2947}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}age_cat {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .3217194{col 26}{space 2} .2318683{col 37}{space 1}    1.39{col 46}{space 3}0.165{col 54}{space 4}-.1327342{col 67}{space 3}  .776173
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} 1.460684{col 26}{space 2} .2288171{col 37}{space 1}    6.38{col 46}{space 3}0.000{col 54}{space 4} 1.012211{col 67}{space 3} 1.909158
+{txt}{space 12} {c |}
+{space 8}male {c |}{col 14}{res}{space 2} .4381968{col 26}{space 2} .2244757{col 37}{space 1}    1.95{col 46}{space 3}0.051{col 54}{space 4}-.0017675{col 67}{space 3}  .878161
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2}-.0017481{col 26}{space 2} .0013787{col 37}{space 1}   -1.27{col 46}{space 3}0.205{col 54}{space 4}-.0044502{col 67}{space 3} .0009541
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2} .0003064{col 26}{space 2}  .000219{col 37}{space 1}    1.40{col 46}{space 3}0.162{col 54}{space 4}-.0001228{col 67}{space 3} .0007356
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 58.02446{col 26}{space 2} 18.32304{col 37}{space 1}    3.17{col 46}{space 3}0.002{col 54}{space 4} 22.11196{col 67}{space 3} 93.93696
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2}-36.05071{col 26}{space 2} 9.991092{col 37}{space 1}   -3.61{col 46}{space 3}0.000{col 54}{space 4}-55.63289{col 67}{space 3}-16.46853
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2}-.0006279{col 26}{space 2} .0002443{col 37}{space 1}   -2.57{col 46}{space 3}0.010{col 54}{space 4}-.0011067{col 67}{space 3}-.0001492
+{txt}{space 9}sbp {c |}{col 14}{res}{space 2} .0239449{col 26}{space 2} .0523241{col 37}{space 1}    0.46{col 46}{space 3}0.647{col 54}{space 4}-.0786085{col 67}{space 3} .1264984
+{txt}{space 9}gcs {c |}{col 14}{res}{space 2} .0115729{col 26}{space 2}   .09828{col 37}{space 1}    0.12{col 46}{space 3}0.906{col 54}{space 4}-.1810523{col 67}{space 3} .2041982
+{txt}{space 12} {c |}
+{space 1}c.sbp#c.gcs {c |}{col 14}{res}{space 2}-.0008966{col 26}{space 2} .0005214{col 37}{space 1}   -1.72{col 46}{space 3}0.086{col 54}{space 4}-.0019185{col 67}{space 3} .0001254
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 5.276528{col 26}{space 2} 2.125892{col 37}{space 1}    2.48{col 46}{space 3}0.013{col 54}{space 4} 1.109856{col 67}{space 3}   9.4432
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. 
+. * check usefulness on validation sample
+. estat classification if val == 1
+
+{txt}Logistic model for died
+
+{col 15}{hline 8} True {hline 8}
+Classified {c |}{col 22}D{col 35}~D  {c |}{col 46}Total
+{hline 11}{c +}{hline 26}{c +}{hline 11}
+{col 6}+{col 12}{c |} {res}        8{col 28}        5{txt}  {c |}  {res}       13
+{txt}{col 6}-{col 12}{c |} {res}       34{col 28}      628{txt}  {c |}  {res}      662
+{txt}{hline 11}{c +}{hline 26}{c +}{hline 11}
+   Total   {c |} {res}       42{col 28}      633{txt}  {c |}  {res}      675
+
+{txt}Classified + if predicted Pr(D) >= .5
+True D defined as died != 0
+{hline 50}
+Sensitivity                     Pr( +| D){res}   19.05%
+{txt}Specificity                     Pr( -|~D){res}   99.21%
+{txt}Positive predictive value       Pr( D| +){res}   61.54%
+{txt}Negative predictive value       Pr(~D| -){res}   94.86%
+{txt}{hline 50}
+False + rate for true ~D        Pr( +|~D){res}    0.79%
+{txt}False - rate for true D         Pr( -| D){res}   80.95%
+{txt}False + rate for classified +   Pr(~D| +){res}   38.46%
+{txt}False - rate for classified -   Pr( D| -){res}    5.14%
+{txt}{hline 50}
+Correctly classified                     {res}   94.22%
+{txt}{hline 50}
+
+{com}. lroc if val==1
+{res}
+{txt}Logistic model for died
+
+Number of observations = {res}     675
+{txt}Area under ROC curve   = {res}  0.8315
+{txt}
+{com}. predict xbpred if val == 1, xb
+{txt}(2789 missing values generated)
+
+{com}. roctab died xbpred if val == 1, summary
+{res}
+{txt}{col 23}ROC{col 32}{col 46}{space 1}Asymptotic normal{space 2}
+           Obs       area     Std. err.      [95% conf. interval]
+     {hline 60}
+{col 5}{res}       675{col 18}  0.8315{col 31}  0.0382{col 46} 0.75656{col 58} 0.90638
+{txt}
+{com}. lsens if val==1
+{res}{txt}
+{com}. estat classification if val == 1, cutoff(0.1)
+
+{txt}Logistic model for died
+
+{col 15}{hline 8} True {hline 8}
+Classified {c |}{col 22}D{col 35}~D  {c |}{col 46}Total
+{hline 11}{c +}{hline 26}{c +}{hline 11}
+{col 6}+{col 12}{c |} {res}       29{col 28}       57{txt}  {c |}  {res}       86
+{txt}{col 6}-{col 12}{c |} {res}       13{col 28}      576{txt}  {c |}  {res}      589
+{txt}{hline 11}{c +}{hline 26}{c +}{hline 11}
+   Total   {c |} {res}       42{col 28}      633{txt}  {c |}  {res}      675
+
+{txt}Classified + if predicted Pr(D) >= .1
+True D defined as died != 0
+{hline 50}
+Sensitivity                     Pr( +| D){res}   69.05%
+{txt}Specificity                     Pr( -|~D){res}   91.00%
+{txt}Positive predictive value       Pr( D| +){res}   33.72%
+{txt}Negative predictive value       Pr(~D| -){res}   97.79%
+{txt}{hline 50}
+False + rate for true ~D        Pr( +|~D){res}    9.00%
+{txt}False - rate for true D         Pr( -| D){res}   30.95%
+{txt}False + rate for classified +   Pr(~D| +){res}   66.28%
+{txt}False - rate for classified -   Pr( D| -){res}    2.21%
+{txt}{hline 50}
+Correctly classified                     {res}   89.63%
+{txt}{hline 50}
+
+{com}. 
+. * 10.a test adding asaps into model
+. logit died i.age_cat male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.sbp##c.gcs if val==0
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-497.44832}  
+Iteration 2:{space 3}log likelihood = {res:-461.07985}  
+Iteration 3:{space 3}log likelihood = {res:-459.31853}  
+Iteration 4:{space 3}log likelihood = {res:-459.31648}  
+Iteration 5:{space 3}log likelihood = {res:-459.31648}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:11})}{col 70} = {res}{ralign 6:383.76}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.31648}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2947}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}age_cat {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .3217194{col 26}{space 2} .2318683{col 37}{space 1}    1.39{col 46}{space 3}0.165{col 54}{space 4}-.1327342{col 67}{space 3}  .776173
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} 1.460684{col 26}{space 2} .2288171{col 37}{space 1}    6.38{col 46}{space 3}0.000{col 54}{space 4} 1.012211{col 67}{space 3} 1.909158
+{txt}{space 12} {c |}
+{space 8}male {c |}{col 14}{res}{space 2} .4381968{col 26}{space 2} .2244757{col 37}{space 1}    1.95{col 46}{space 3}0.051{col 54}{space 4}-.0017675{col 67}{space 3}  .878161
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2}-.0017481{col 26}{space 2} .0013787{col 37}{space 1}   -1.27{col 46}{space 3}0.205{col 54}{space 4}-.0044502{col 67}{space 3} .0009541
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2} .0003064{col 26}{space 2}  .000219{col 37}{space 1}    1.40{col 46}{space 3}0.162{col 54}{space 4}-.0001228{col 67}{space 3} .0007356
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 58.02446{col 26}{space 2} 18.32304{col 37}{space 1}    3.17{col 46}{space 3}0.002{col 54}{space 4} 22.11196{col 67}{space 3} 93.93696
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2}-36.05071{col 26}{space 2} 9.991092{col 37}{space 1}   -3.61{col 46}{space 3}0.000{col 54}{space 4}-55.63289{col 67}{space 3}-16.46853
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2}-.0006279{col 26}{space 2} .0002443{col 37}{space 1}   -2.57{col 46}{space 3}0.010{col 54}{space 4}-.0011067{col 67}{space 3}-.0001492
+{txt}{space 9}sbp {c |}{col 14}{res}{space 2} .0239449{col 26}{space 2} .0523241{col 37}{space 1}    0.46{col 46}{space 3}0.647{col 54}{space 4}-.0786085{col 67}{space 3} .1264984
+{txt}{space 9}gcs {c |}{col 14}{res}{space 2} .0115729{col 26}{space 2}   .09828{col 37}{space 1}    0.12{col 46}{space 3}0.906{col 54}{space 4}-.1810523{col 67}{space 3} .2041982
+{txt}{space 12} {c |}
+{space 1}c.sbp#c.gcs {c |}{col 14}{res}{space 2}-.0008966{col 26}{space 2} .0005214{col 37}{space 1}   -1.72{col 46}{space 3}0.086{col 54}{space 4}-.0019185{col 67}{space 3} .0001254
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 5.276528{col 26}{space 2} 2.125892{col 37}{space 1}    2.48{col 46}{space 3}0.013{col 54}{space 4} 1.109856{col 67}{space 3}   9.4432
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. est store base
+{txt}
+{com}. 
+. logit died i.age_cat male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.sbp##c.gcs asaps if val==0
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-463.62756}  
+Iteration 2:{space 3}log likelihood = {res: -392.1188}  
+Iteration 3:{space 3}log likelihood = {res:-386.19507}  
+Iteration 4:{space 3}log likelihood = {res:-386.14071}  
+Iteration 5:{space 3}log likelihood = {res:-386.14067}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:12})}{col 70} = {res}{ralign 6:530.12}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-386.14067}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.4070}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}age_cat {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .3613395{col 26}{space 2} .2483643{col 37}{space 1}    1.45{col 46}{space 3}0.146{col 54}{space 4}-.1254456{col 67}{space 3} .8481246
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} 1.462478{col 26}{space 2} .2519039{col 37}{space 1}    5.81{col 46}{space 3}0.000{col 54}{space 4} .9687552{col 67}{space 3}   1.9562
+{txt}{space 12} {c |}
+{space 8}male {c |}{col 14}{res}{space 2} .3318727{col 26}{space 2} .2389193{col 37}{space 1}    1.39{col 46}{space 3}0.165{col 54}{space 4}-.1364006{col 67}{space 3}  .800146
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2}-.0013886{col 26}{space 2} .0014607{col 37}{space 1}   -0.95{col 46}{space 3}0.342{col 54}{space 4}-.0042516{col 67}{space 3} .0014743
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2}  .000241{col 26}{space 2} .0002319{col 37}{space 1}    1.04{col 46}{space 3}0.299{col 54}{space 4}-.0002135{col 67}{space 3} .0006955
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 45.04301{col 26}{space 2} 22.33995{col 37}{space 1}    2.02{col 46}{space 3}0.044{col 54}{space 4} 1.257518{col 67}{space 3}  88.8285
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2} -28.9679{col 26}{space 2}  11.9114{col 37}{space 1}   -2.43{col 46}{space 3}0.015{col 54}{space 4}-52.31381{col 67}{space 3}-5.621992
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2}-.0001511{col 26}{space 2} .0002647{col 37}{space 1}   -0.57{col 46}{space 3}0.568{col 54}{space 4}-.0006699{col 67}{space 3} .0003677
+{txt}{space 9}sbp {c |}{col 14}{res}{space 2} .0216448{col 26}{space 2} .0552967{col 37}{space 1}    0.39{col 46}{space 3}0.695{col 54}{space 4}-.0867347{col 67}{space 3} .1300243
+{txt}{space 9}gcs {c |}{col 14}{res}{space 2}-.0976106{col 26}{space 2} .1064892{col 37}{space 1}   -0.92{col 46}{space 3}0.359{col 54}{space 4}-.3063255{col 67}{space 3} .1111044
+{txt}{space 12} {c |}
+{space 1}c.sbp#c.gcs {c |}{col 14}{res}{space 2}-.0003623{col 26}{space 2} .0005439{col 37}{space 1}   -0.67{col 46}{space 3}0.505{col 54}{space 4}-.0014283{col 67}{space 3} .0007038
+{txt}{space 12} {c |}
+{space 7}asaps {c |}{col 14}{res}{space 2} 1.217829{col 26}{space 2} .1143441{col 37}{space 1}   10.65{col 46}{space 3}0.000{col 54}{space 4} .9937189{col 67}{space 3}  1.44194
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.7781796{col 26}{space 2} 2.394114{col 37}{space 1}   -0.33{col 46}{space 3}0.745{col 54}{space 4}-5.470557{col 67}{space 3} 3.914198
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lrtest base
+
+{txt}Likelihood-ratio test
+Assumption: {res}{stata est replay base:base}{txt} nested within {res}{stata est replay .:.}
+
+{txt}{ralign 11:LR chi2({res:1})} = {res}{ralign 6:146.35}
+{txt}{ralign 11:Prob > chi2} = {res}{ralign 6:0.0000}
+{txt}
+{com}. 
+. * 10.b AROC
+. logit died i.age_cat male sbp_1 sbp_2 rr_1 rr_2 gcs_1 c.sbp##c.gcs if val==0
+
+{res}{txt}Iteration 0:{space 3}log likelihood = {res:-651.19837}  
+Iteration 1:{space 3}log likelihood = {res:-497.44832}  
+Iteration 2:{space 3}log likelihood = {res:-461.07985}  
+Iteration 3:{space 3}log likelihood = {res:-459.31853}  
+Iteration 4:{space 3}log likelihood = {res:-459.31648}  
+Iteration 5:{space 3}log likelihood = {res:-459.31648}  
+{res}
+{txt}{col 1}Logistic regression{col 57}{lalign 13:Number of obs}{col 70} = {res}{ralign 6:2,789}
+{txt}{col 57}{lalign 13:LR chi2({res:11})}{col 70} = {res}{ralign 6:383.76}
+{txt}{col 57}{lalign 13:Prob > chi2}{col 70} = {res}{ralign 6:0.0000}
+{txt}{col 1}{lalign 14:Log likelihood}{col 15} = {res}{ralign 10:-459.31648}{txt}{col 57}{lalign 13:Pseudo R2}{col 70} = {res}{ralign 6:0.2947}
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}        died{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      z{col 46}   P>|z|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 5}age_cat {c |}
+{space 10}2  {c |}{col 14}{res}{space 2} .3217194{col 26}{space 2} .2318683{col 37}{space 1}    1.39{col 46}{space 3}0.165{col 54}{space 4}-.1327342{col 67}{space 3}  .776173
+{txt}{space 10}3  {c |}{col 14}{res}{space 2} 1.460684{col 26}{space 2} .2288171{col 37}{space 1}    6.38{col 46}{space 3}0.000{col 54}{space 4} 1.012211{col 67}{space 3} 1.909158
+{txt}{space 12} {c |}
+{space 8}male {c |}{col 14}{res}{space 2} .4381968{col 26}{space 2} .2244757{col 37}{space 1}    1.95{col 46}{space 3}0.051{col 54}{space 4}-.0017675{col 67}{space 3}  .878161
+{txt}{space 7}sbp_1 {c |}{col 14}{res}{space 2}-.0017481{col 26}{space 2} .0013787{col 37}{space 1}   -1.27{col 46}{space 3}0.205{col 54}{space 4}-.0044502{col 67}{space 3} .0009541
+{txt}{space 7}sbp_2 {c |}{col 14}{res}{space 2} .0003064{col 26}{space 2}  .000219{col 37}{space 1}    1.40{col 46}{space 3}0.162{col 54}{space 4}-.0001228{col 67}{space 3} .0007356
+{txt}{space 8}rr_1 {c |}{col 14}{res}{space 2} 58.02446{col 26}{space 2} 18.32304{col 37}{space 1}    3.17{col 46}{space 3}0.002{col 54}{space 4} 22.11196{col 67}{space 3} 93.93696
+{txt}{space 8}rr_2 {c |}{col 14}{res}{space 2}-36.05071{col 26}{space 2} 9.991092{col 37}{space 1}   -3.61{col 46}{space 3}0.000{col 54}{space 4}-55.63289{col 67}{space 3}-16.46853
+{txt}{space 7}gcs_1 {c |}{col 14}{res}{space 2}-.0006279{col 26}{space 2} .0002443{col 37}{space 1}   -2.57{col 46}{space 3}0.010{col 54}{space 4}-.0011067{col 67}{space 3}-.0001492
+{txt}{space 9}sbp {c |}{col 14}{res}{space 2} .0239449{col 26}{space 2} .0523241{col 37}{space 1}    0.46{col 46}{space 3}0.647{col 54}{space 4}-.0786085{col 67}{space 3} .1264984
+{txt}{space 9}gcs {c |}{col 14}{res}{space 2} .0115729{col 26}{space 2}   .09828{col 37}{space 1}    0.12{col 46}{space 3}0.906{col 54}{space 4}-.1810523{col 67}{space 3} .2041982
+{txt}{space 12} {c |}
+{space 1}c.sbp#c.gcs {c |}{col 14}{res}{space 2}-.0008966{col 26}{space 2} .0005214{col 37}{space 1}   -1.72{col 46}{space 3}0.086{col 54}{space 4}-.0019185{col 67}{space 3} .0001254
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 5.276528{col 26}{space 2} 2.125892{col 37}{space 1}    2.48{col 46}{space 3}0.013{col 54}{space 4} 1.109856{col 67}{space 3}   9.4432
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{p 0 6 2}Note: 0 failures and 2 successes completely determined.{p_end}
+
+{com}. lroc if val==0
+{res}
+{txt}Logistic model for died
+
+Number of observations = {res}    2789
+{txt}Area under ROC curve   = {res}  0.8798
+{txt}
+{com}. drop xbpred 
+{txt}
+{com}. predict xbpred if val == 0, xb
+{txt}(675 missing values generated)
+
+{com}. roctab died xbpred if val == 0, summary
+{res}
+{txt}{col 23}ROC{col 32}{col 46}{space 1}Asymptotic normal{space 2}
+           Obs       area     Std. err.      [95% conf. interval]
+     {hline 60}
+{col 5}{res}     2,789{col 18}  0.8798{col 31}  0.0125{col 46} 0.85528{col 58} 0.90433
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}. exit, clear
